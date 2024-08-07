@@ -10,8 +10,8 @@ module tb_fifo_mem #()();
 
     parameter ENDTIME    = 2000;
     parameter DATA_WIDTH = 16;
-    parameter OSTD_NUM   = 8;
-    parameter MAX_INT    = 18;
+    parameter OSTD_NUM   = 18;
+    parameter MAX_INT    = OSTD_NUM;
     parameter ADDR_WIDTH = 8;
     parameter MEM_SIZE   = 64;
     parameter MAX_ADDR   = 32;
@@ -55,6 +55,8 @@ module tb_fifo_mem #()();
     end
 
     initial begin
+        $dumpfile("SystolicArray2x2.vcd");
+        $dumpvars();
         main;
     end
 
@@ -87,7 +89,7 @@ module tb_fifo_mem #()();
 
     task operation_process;
         begin
-            for (i = 0; i < MAX_INT - 1; i = i + 1) begin: write_part
+            for (i = 0; i < MAX_INT - 1; i++) begin: write_part
                 #(`DELAY*5)
                 trans_write = 1'b1;
                 data_in     = data_in + 1'b1;
@@ -95,7 +97,7 @@ module tb_fifo_mem #()();
                 trans_write = 1'b0;
             end
             #(`DELAY)
-            for (i = 0; i < MAX_INT - 1; i = i + 1) begin: read_part
+            for (i = 0; i < MAX_INT - 1; i++) begin: read_part
                 #(`DELAY*2)
                 trans_read = 1'b1;
                 #(`DELAY*2)
@@ -117,7 +119,7 @@ module tb_fifo_mem #()();
     endtask 
 
     reg [ADDR_WIDTH-1:0] waddr, raddr;
-    reg [ADDR_WIDTH-1:0] [MEM_SIZE-1:0] tb_mem;
+    reg [ADDR_WIDTH-1:0] tb_mem [MEM_SIZE-1:0];
 
     always @(posedge clk or negedge rst_n) begin
         if (~rst_n) begin
@@ -141,7 +143,7 @@ module tb_fifo_mem #()();
                 // Simulation result check
                 if (tb_mem[raddr] == data_out) begin
                     $display("=== PASS ===== PASS ==== PASS ==== PASS ===");
-                    if (raddr == 32) begin
+                    if (raddr == MAX_INT-1) begin
                         $finish;
                     end
                 end else begin
