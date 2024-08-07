@@ -17,7 +17,10 @@ Spec:
    -- Threshold - High when number of data in FIFO is lesser than threshold value (Might be redundant)
 
 Status:
+-- Debug TB not incrementing beyond addr = 4
+-- V1 release (20240807)
 -- Init (20240807)
 
 Changelist:
--- 
+-- Compile fix (20240807)
+-- V1 release (20240807)
