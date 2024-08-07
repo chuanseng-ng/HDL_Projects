@@ -8,7 +8,7 @@
 
 module tb_fifo_mem #()();
 
-    parameter ENDTIME    = 40000;
+    parameter ENDTIME    = 2000;
     parameter DATA_WIDTH = 16;
     parameter OSTD_NUM   = 8;
     parameter MAX_INT    = 18;
@@ -28,11 +28,11 @@ module tb_fifo_mem #()();
 
     integer i;
 
-    fifo_mem u_tb #(
+    fifo_mem #(
         .DATA_WIDTH      (DATA_WIDTH),
         .OSTD_NUM        (OSTD_NUM),
         .THRESHOLD_VALUE (OSTD_NUM/2)
-    ) (
+    ) u_tb (
         .clk_in        (clk),
         .areset_b      (rst_n),
         .trans_read    (trans_read),
@@ -131,7 +131,7 @@ module tb_fifo_mem #()();
     end
 
     always @(posedge clk or negedge rst_n) begin
-        $display("TIME = %d, data_out = %d, mem = %d", $time, data_out, tb_mem[raddr]);  
+        $display("TIME = %d, data_out = %d, mem = %d, raddr = %d", $time, data_out, tb_mem[raddr], raddr);  
         if (~rst_n) begin
             raddr <= {(ADDR_WIDTH){1'b0}};
         end else begin
@@ -139,7 +139,7 @@ module tb_fifo_mem #()();
                 raddr <= raddr + 1;
 
                 // Simulation result check
-                if (mem[raddr] == data_out) begin
+                if (tb_mem[raddr] == data_out) begin
                     $display("=== PASS ===== PASS ==== PASS ==== PASS ===");
                     if (raddr == 32) begin
                         $finish;

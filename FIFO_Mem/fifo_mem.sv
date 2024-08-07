@@ -30,9 +30,9 @@
 
 // Main module
 module fifo_mem #(
-    .DATA_WIDTH      (32),
-    .OSTD_NUM        (4),
-    .THRESHOLD_VALUE (OSTD_NUM/2)
+    parameter DATA_WIDTH      = 32,
+    parameter OSTD_NUM        = 4,
+    parameter THRESHOLD_VALUE = OSTD_NUM/2
 ) (
     input clk_in,
     input areset_b,
@@ -93,14 +93,33 @@ module fifo_mem #(
         .read_ptr     (read_ptr)
     );
 
+    monitor_signal #(
+        .OSTD_NUM (OSTD_NUM),
+        .PTR_SIZE (PTR_SIZE)
+    ) u_monitor_signal (
+        .clk_in        (clk_in),
+        .areset_b      (areset_b),
+        .trans_read    (trans_read),
+        .trans_write   (trans_write),
+        .fifo_renable  (fifo_renable),
+        .fifo_wenable  (fifo_wenable),
+        .read_ptr      (read_ptr),
+        .write_ptr     (write_ptr),
+        .full_ind      (full_ind),
+        .empty_ind     (empty_ind),
+        .overflow_ind  (overflow_ind),
+        .underflow_ind (underflow_ind),
+        .threshold_ind (threshold_ind)
+    );
+
 endmodule
 
 // Sub-module -- Memory Array Storage
 module memory_array #(
-    .DATA_WIDTH      (32),
-    .OSTD_NUM        (4),
-    .THRESHOLD_VALUE (OSTD_NUM/2),
-    .PTR_SIZE        ((OSTD_NUM > 1) ? $clog2(OSTD_NUM) : 1)
+    parameter DATA_WIDTH      = 32,
+    parameter OSTD_NUM        = 8,
+    parameter THRESHOLD_VALUE = OSTD_NUM/2,
+    parameter PTR_SIZE        = (OSTD_NUM > 1) ? $clog2(OSTD_NUM) : 1
 ) (
     input clk_in,
     input areset_b,
@@ -130,7 +149,7 @@ endmodule
 
 // Sub-module -- Read/Write Pointer Update
 module read_write_pointer #(
-    .PTR_SIZE (2)
+    parameter PTR_SIZE = 3
 ) (
     input clk_in,
     input areset_b,
@@ -139,7 +158,7 @@ module read_write_pointer #(
     
     output fifo_enable,
 
-    output [PTR_SIZE-1:0 ] rd_wr_ptr,
+    output reg [PTR_SIZE-1:0 ] rd_wr_ptr
 );
     assign fifo_enable = (~full_empty_ind) && trans_enable;
 
@@ -158,7 +177,8 @@ endmodule
 
 // Sub-module -- Monitoring Signal
 module monitor_signal #(
-    .PTR_SIZE (2)
+    parameter OSTD_NUM = 8,
+    parameter PTR_SIZE = 3
 ) (
     input clk_in,
     input areset_b,
@@ -171,11 +191,11 @@ module monitor_signal #(
     input [PTR_SIZE-1:0] read_ptr,
     input [PTR_SIZE-1:0] write_ptr,
 
-    output full_ind,
-    output empty_ind,
-    output overflow_ind,
-    output underflow_ind,
-    output threshold_ind
+    output reg full_ind,
+    output reg empty_ind,
+    output reg overflow_ind,
+    output reg underflow_ind,
+    output reg threshold_ind
 );
     wire ptr_msb_compare;
     wire overflow_set, underflow_set;
@@ -192,14 +212,14 @@ module monitor_signal #(
     always_comb begin
         full_ind      = ptr_msb_compare && ptr_equal;
         empty_ind     = (~ptr_msb_compare) && ptr_equal;
-        threshold_ind = (ptr_result[OSTD_NUM-1]||ptr_result[OSTD_NUM-2]) ? 1 : 0;
+        threshold_ind = (ptr_result[PTR_SIZE-1] || ptr_result[PTR_SIZE-2]) ? 1 : 0;
     end
 
     always @(posedge clk_in or negedge areset_b) begin
         if (~areset_b) begin
             underflow_ind <= 1'b0;
         end else begin
-            if ((underflow_set==1) && (fifo_wenable==0)) begin
+            if ((underflow_set == 1) && (fifo_wenable == 0)) begin
                 underflow_ind <= 1'b1;
             end else if (fifo_wenable) begin
                 underflow_ind <= 1'b0;
@@ -213,7 +233,7 @@ module monitor_signal #(
         if (~areset_b) begin
             overflow_ind <= 1'b0;
         end else begin
-            if ((overflow_set==1) && (fifo_renable==0)) begin
+            if ((overflow_set == 1) && (fifo_renable == 0)) begin
                 overflow_ind <= 1'b1;
             end else if (fifo_renable) begin
                 overflow_ind <= 1'b0;
