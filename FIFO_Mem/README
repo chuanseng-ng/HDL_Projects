@@ -15,12 +15,17 @@ Spec:
    -- Overflow  - High when FIFO is full & transaction is still writing to FIFO (Might be redundant)
    -- Underflow - High when FIFO is empty & transaction is reading from FIFO (Might be redundant)
    -- Threshold - High when number of data in FIFO is lesser than threshold value (Might be redundant)
+-- Operation:
+   -- Write operation will take 1 clock cycle to be stored in FIFO memory array
+   -- Read operation from FIFO memory array is instantly done (Will take 0 clock cycles)
+   -- Read/Write pointer size == max value of outstanding transaction
 
 Status:
--- Debug TB not incrementing beyond addr = 4
+-- Debug TB not incrementing beyond addr = 4 (20240807) - Fixed FIFO size & read/write pointer unable to increment
 -- V1 release (20240807)
 -- Init (20240807)
 
 Changelist:
+-- Bug fix for FIFO size (20240807)
 -- Compile fix (20240807)
 -- V1 release (20240807)
