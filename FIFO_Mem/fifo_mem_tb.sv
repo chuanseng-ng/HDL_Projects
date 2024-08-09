@@ -6,15 +6,15 @@
 
 `define DELAY 10
 
-module tb_fifo_mem #()();
+module fifo_mem_tb #()();
 
-    parameter ENDTIME    = 2000;
-    parameter DATA_WIDTH = 16;
-    parameter OSTD_NUM   = 18;
-    parameter MAX_INT    = OSTD_NUM;
-    parameter ADDR_WIDTH = 8;
-    parameter MEM_SIZE   = 64;
-    parameter MAX_ADDR   = 32;
+    parameter int ENDTIME    = 2000;
+    parameter int DATA_WIDTH = 16;
+    parameter int OSTD_NUM   = 18;
+    parameter int MAX_INT    = OSTD_NUM;
+    parameter int ADDR_WIDTH = 8;
+    parameter int MEM_SIZE   = 64;
+    parameter int MAX_ADDR   = 32;
 
     reg clk;
     reg rst_n;
@@ -133,7 +133,7 @@ module tb_fifo_mem #()();
     end
 
     always @(posedge clk or negedge rst_n) begin
-        $display("TIME = %d, data_out = %d, mem = %d, raddr = %d", $time, data_out, tb_mem[raddr], raddr);  
+        $display("TIME = %d, data_out = %d, mem = %d, raddr = %d", $time, data_out, tb_mem[raddr], raddr);
         if (~rst_n) begin
             raddr <= {(ADDR_WIDTH){1'b0}};
         end else begin
