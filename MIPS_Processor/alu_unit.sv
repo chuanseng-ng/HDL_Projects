@@ -31,7 +31,8 @@ module alu_unit #(
 
     output carry_out
 );
-    wire [ALU_SIZE-1:0] alu_result;
+    reg [ALU_SIZE-1:0] alu_result;
+
     wire [ALU_SIZE:0]   carry_out_temp;
 
     always_comb begin
