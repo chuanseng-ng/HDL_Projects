@@ -20,7 +20,7 @@
     -- Equal Compare       - alu_out = 1 if A == B else 0
 */
 module alu_unit #(
-    parameter int ALU_SIZE  = 8,
+    parameter int ALU_SIZE  = 16,
     parameter int SHIFT_BIT = 1
 ) (
     input [ALU_SIZE-1:0] alu_in_a,

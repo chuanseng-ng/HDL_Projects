@@ -2,7 +2,12 @@
 `include "include/mips_define.sv"
 
 module mips_cpu_tb #(
-    parameter int PC_WIDTH = 16
+    parameter int ADDR_WIDTH = 32,
+    parameter int DATA_WIDTH = 16,
+    parameter int INSTR_NUM  = 15,
+    parameter int SHIFT_BIT  = 1,
+    parameter int MEM_SIZE   = 256,
+    parameter int PC_WIDTH   = 16
 ) ();
     reg clk;
     reg rst_n;

@@ -4,9 +4,9 @@ module cpu_control_unit #() (
 
     input [2:0] cpu_opcode,
 
-    output reg [2:0] dest_reg,
-    output reg [2:0] mem_to_reg,
-    output reg [2:0] alu_opcode,
+    output reg [1:0] dest_reg,
+    output reg [1:0] mem_to_reg,
+    output reg [1:0] alu_opcode,
 
     output reg cpu_jump,
     output reg cpu_branch,

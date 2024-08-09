@@ -69,11 +69,11 @@
 */
 
 module mips_processor #(
-    parameter int ADDR_WIDTH = 32,
+    parameter int ADDR_WIDTH = 16,
     parameter int DATA_WIDTH = 16,
     parameter int PC_WIDTH   = 16,
     parameter int INSTR_NUM  = 15,
-    parameter int ALU_SIZE   = 8,
+    parameter int ALU_SIZE   = ADDR_WIDTH,
     parameter int SHIFT_BIT  = 1,
     parameter int MEM_SIZE   = 256
 ) (
@@ -161,7 +161,6 @@ module mips_processor #(
         .REG_NUM    (8)
     ) u_register_file (
         .clk_in        (clk),
-        .rst_n         (rst_n),
         .reg_wr_en     (cpu_reg_wr),
         .reg_wr_dest   (reg_wr_dest),
         .reg_rd_addr_1 (reg_rd_addr_1),
