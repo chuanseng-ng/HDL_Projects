@@ -5,11 +5,22 @@ This repo is to track Hardware Description Language projects
 ################################################################
 
 Status:
--- FIFO Memory - Init (20240807)
+-- 20240810 -> FIFO Memory                        - RTL Done + Verified Ok
+-- 20240810 -> 16-bit Single-Cycle MIPS Processor - RTL Done + Compile Ok
+-- 20240810 -> Programmable Digital Delay Timer   - Init DB
 
 To-Do:
--- 16-bit single-cycle MIPS processor
--- Programmable digital delay timer
+-- 32-bit Unsigned Divider
+-- Fixed-point Matrix Multiplication
+-- Carry-look-ahead Multiplier
+-- 4x4 Multiplier
+-- Simple Microcontroller
+
+Setup:
+-- Linter      - Verible
+-- Style-Check - Verible
+-- Simulator   - ModelSim (TerosHDL)
+-- Waveform    - GTKWave  (TerosHDL)
 
 Reference:
 -- https://www.fpga4student.com/p/verilog-project.html

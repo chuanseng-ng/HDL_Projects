@@ -1,6 +1,6 @@
 ################################################################
 This repo is to track FIFO memory project
--- Idea/Spec is listed below
+-- Spec is listed below
 -- Status is listed below
 -- Changelist is listed below
 ################################################################
@@ -21,11 +21,15 @@ Spec:
    -- Read/Write pointer size == max value of outstanding transaction
 
 Status:
--- Debug TB not incrementing beyond addr = 4 (20240807) - Fixed FIFO size & read/write pointer unable to increment
--- V1 release (20240807)
--- Init (20240807)
+-- 20240807 - Debug TB not incrementing beyond addr = 4 (Fixed FIFO size & read/write pointer unable to increment)
+-- 20240807 - V1 release
+-- 20240807 - Init DB
 
 Changelist:
--- Bug fix for FIFO size (20240807)
--- Compile fix (20240807)
--- V1 release (20240807)
+-- 20240810 - Style-checker & Linter fix
+-- 20240807 - Bug fix for FIFO size
+-- 20240807 - Compile fix
+-- 20240807 - V1 release
+
+Reference:
+-- https://www.fpga4student.com/2017/01/verilog-code-for-fifo-memory.html
