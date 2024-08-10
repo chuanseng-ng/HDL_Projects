@@ -73,7 +73,6 @@ module mips_processor #(
     parameter int DATA_WIDTH = 16,
     parameter int PC_WIDTH   = 16,
     parameter int INSTR_NUM  = 15,
-    parameter int ALU_SIZE   = ADDR_WIDTH,
     parameter int SHIFT_BIT  = 1,
     parameter int MEM_SIZE   = 256
 ) (
@@ -194,7 +193,7 @@ module mips_processor #(
 
     // ALU
     alu_unit #(
-        .ALU_SIZE  (ALU_SIZE),
+        .ALU_SIZE  (ADDR_WIDTH),
         .SHIFT_BIT (SHIFT_BIT)
     ) u_alu_unit (
         .alu_in_a  (reg_rd_data_1),

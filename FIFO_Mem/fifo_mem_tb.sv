@@ -55,12 +55,12 @@ module fifo_mem_tb #()();
     end
 
     initial begin
-        $dumpfile("SystolicArray2x2.vcd");
-        $dumpvars();
+        //$dumpfile("SystolicArray2x2.vcd");
+        //$dumpvars();
         main;
     end
 
-    task main;
+    task static main;
         fork
             clock_gen;
             reset_gen;
@@ -70,13 +70,13 @@ module fifo_mem_tb #()();
         join
     endtask
 
-    task clock_gen;
+    task static clock_gen;
         begin
             forever #`DELAY clk = !clk;
         end
     endtask
 
-    task reset_gen;
+    task static reset_gen;
         begin
             #(`DELAY*2)
             rst_n = 1'b1;
@@ -87,7 +87,7 @@ module fifo_mem_tb #()();
         end
     endtask
 
-    task operation_process;
+    task static operation_process;
         begin
             for (i = 0; i < MAX_INT - 1; i++) begin: write_part
                 #(`DELAY*5)
@@ -106,7 +106,7 @@ module fifo_mem_tb #()();
         end
     endtask
 
-    task debug_fifo;
+    task static debug_fifo;
         begin
             $display("----------------------------------------------");  
             $display("------------------   -----------------------");  
@@ -114,9 +114,9 @@ module fifo_mem_tb #()();
             $display("--------------       -------------------");  
             $display("----------------     ---------------------");  
             $display("----------------------------------------------");  
-            $monitor("TIME = %d, wr = %b, rd = %b, data_in = %h", $time, trans_write, trans_read, data_in);  
-        end  
-    endtask 
+            $monitor("TIME = %d, wr = %b, rd = %b, data_in = %h", $time, trans_write, trans_read, data_in);
+        end
+    endtask
 
     reg [ADDR_WIDTH-1:0] waddr, raddr;
     reg [ADDR_WIDTH-1:0] tb_mem [MEM_SIZE-1:0];
@@ -155,7 +155,7 @@ module fifo_mem_tb #()();
         end
     end
 
-    task endsimulation;
+    task static endsimulation;
         begin
             #ENDTIME
             $display("-------------- THE SIMUALTION FINISHED ------------");  
