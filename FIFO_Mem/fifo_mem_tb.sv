@@ -47,6 +47,11 @@ module fifo_mem_tb #()();
     );
 
     initial begin
+        $display("FIFO Memory TB");
+
+        $dumpfile("fifo_mem.vcd");
+        $dumpvars();
+
         clk         = 1'b0;
         rst_n       = 1'b0;
         trans_write = 1'b0;
