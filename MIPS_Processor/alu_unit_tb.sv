@@ -24,6 +24,11 @@ module alu_unit_tb #(
     );
 
     initial begin
+        $display("ALU Unit TB");
+
+        $dumpfile("alu_unit.vcd");
+        $dumpvars();
+
         alu_in_a = 8'h0A;
         alu_in_b = 4'h02;
         alu_sel  = 4'h0;
@@ -36,4 +41,5 @@ module alu_unit_tb #(
     alu_in_a = 8'hF6;
     alu_in_b = 8'h0A;
     end
+
 endmodule
