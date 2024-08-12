@@ -3,7 +3,7 @@
 module delay_timer_tb #() ();
 
     parameter int WEIGHT_BIT_WIDTH = 8;
-    parameter int ENDTIME          = 300000;
+    parameter int ENDTIME          = 140000;
 
     reg clk;
     reg rst_n;

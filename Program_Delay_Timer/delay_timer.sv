@@ -71,7 +71,7 @@ module delay_timer #(
         case(delay_mode)
             2'b00: // One-shot mode
                 begin
-                    if (rst_n) begin
+                    if (~rst_n) begin
                         out_low        <= 0;
                         timer_start    <= 0;
                         reset_timer_d0 <= 0;
@@ -87,7 +87,7 @@ module delay_timer #(
                 end
             2'b01: // Delayed operation mode
                 begin
-                    if (rst_n) begin
+                    if (~rst_n) begin
                         out_low        <= 0;
                         timer_start    <= 0;
                         reset_timer_d0 <= 1;
@@ -109,7 +109,7 @@ module delay_timer #(
                 end
             2'b10: // Delayed release mode
                 begin
-                    if (rst_n) begin
+                    if (~rst_n) begin
                         out_low        <= 0;
                         timer_start    <= 0;
                         reset_timer_d0 <= 1;
@@ -126,7 +126,7 @@ module delay_timer #(
                 end
             2'b11: // Delayed dual mode
                 begin
-                    if (rst_n) begin
+                    if (~rst_n) begin
                         out_low        <= 0;
                         timer_start    <= 0;
                         reset_timer_d0 <= 1;
@@ -166,7 +166,7 @@ module delay_timer #(
 
     // Delay output
     always @(posedge clk or negedge rst_n) begin
-        if (rst_n) begin
+        if (~rst_n) begin
             delay_out_n <= 0;
         end else begin
             if (out_low) begin
