@@ -24,3 +24,6 @@ Setup:
 
 Reference:
 -- https://www.fpga4student.com/p/verilog-project.html
+
+Note:
+-- VCD dump path is C:/Users/{user_name}/.teroshdl/build
