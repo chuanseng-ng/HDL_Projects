@@ -77,7 +77,7 @@ module mips_cpu_tb #() ();
     task static endsimulation;
         begin
             #ENDTIME
-            $display("-------------- THE SIMUALTION FINISHED ------------");  
+            $display("-------------- THE SIMUALTION FINISHED ------------");
             $finish;
         end
     endtask
