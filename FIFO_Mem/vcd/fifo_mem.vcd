@@ -1,0 +1,1764 @@
+$date
+	Mon Aug 12 22:18:53 2024
+$end
+$version
+	ModelSim Version 10.5b
+$end
+$timescale
+	10ps
+$end
+
+$scope module fifo_mem_tb $end
+$var parameter 32 ! ENDTIME $end
+$var parameter 32 " DATA_WIDTH $end
+$var parameter 32 # OSTD_NUM $end
+$var parameter 32 $ MAX_INT $end
+$var parameter 32 % ADDR_WIDTH $end
+$var parameter 32 & MEM_SIZE $end
+$var parameter 32 ' MAX_ADDR $end
+$var reg 1 ( clk $end
+$var reg 1 ) rst_n $end
+$var reg 1 * trans_write $end
+$var reg 1 + trans_read $end
+$var reg 16 , data_in [15:0] $end
+$var wire 1 - data_out [15] $end
+$var wire 1 . data_out [14] $end
+$var wire 1 / data_out [13] $end
+$var wire 1 0 data_out [12] $end
+$var wire 1 1 data_out [11] $end
+$var wire 1 2 data_out [10] $end
+$var wire 1 3 data_out [9] $end
+$var wire 1 4 data_out [8] $end
+$var wire 1 5 data_out [7] $end
+$var wire 1 6 data_out [6] $end
+$var wire 1 7 data_out [5] $end
+$var wire 1 8 data_out [4] $end
+$var wire 1 9 data_out [3] $end
+$var wire 1 : data_out [2] $end
+$var wire 1 ; data_out [1] $end
+$var wire 1 < data_out [0] $end
+$var wire 1 = fifo_empty $end
+$var wire 1 > fifo_full $end
+$var wire 1 ? fifo_threshold $end
+$var wire 1 @ fifo_overflow $end
+$var wire 1 A fifo_underflow $end
+$var integer 32 B i $end
+$var reg 8 C waddr [7:0] $end
+$var reg 8 D raddr [7:0] $end
+
+$scope task main $end
+$upscope $end
+
+$scope task clock_gen $end
+$upscope $end
+
+$scope task reset_gen $end
+$upscope $end
+
+$scope task operation_process $end
+
+$scope begin write_part $end
+$upscope $end
+
+$scope begin read_part $end
+$upscope $end
+$upscope $end
+
+$scope task debug_fifo $end
+$upscope $end
+
+$scope task endsimulation $end
+$upscope $end
+
+$scope module u_tb $end
+$var parameter 32 E DATA_WIDTH $end
+$var parameter 32 F OSTD_NUM $end
+$var parameter 32 G THRESHOLD_VALUE $end
+$var parameter 32 H PTR_SIZE $end
+$var wire 1 I clk_in $end
+$var wire 1 J areset_b $end
+$var wire 1 K trans_write $end
+$var wire 1 L trans_read $end
+$var wire 1 M data_in [15] $end
+$var wire 1 N data_in [14] $end
+$var wire 1 O data_in [13] $end
+$var wire 1 P data_in [12] $end
+$var wire 1 Q data_in [11] $end
+$var wire 1 R data_in [10] $end
+$var wire 1 S data_in [9] $end
+$var wire 1 T data_in [8] $end
+$var wire 1 U data_in [7] $end
+$var wire 1 V data_in [6] $end
+$var wire 1 W data_in [5] $end
+$var wire 1 X data_in [4] $end
+$var wire 1 Y data_in [3] $end
+$var wire 1 Z data_in [2] $end
+$var wire 1 [ data_in [1] $end
+$var wire 1 \ data_in [0] $end
+$var wire 1 - data_out [15] $end
+$var wire 1 . data_out [14] $end
+$var wire 1 / data_out [13] $end
+$var wire 1 0 data_out [12] $end
+$var wire 1 1 data_out [11] $end
+$var wire 1 2 data_out [10] $end
+$var wire 1 3 data_out [9] $end
+$var wire 1 4 data_out [8] $end
+$var wire 1 5 data_out [7] $end
+$var wire 1 6 data_out [6] $end
+$var wire 1 7 data_out [5] $end
+$var wire 1 8 data_out [4] $end
+$var wire 1 9 data_out [3] $end
+$var wire 1 : data_out [2] $end
+$var wire 1 ; data_out [1] $end
+$var wire 1 < data_out [0] $end
+$var wire 1 > full_ind $end
+$var wire 1 = empty_ind $end
+$var wire 1 @ overflow_ind $end
+$var wire 1 A underflow_ind $end
+$var wire 1 ? threshold_ind $end
+$var reg 18 ] write_ptr [17:0] $end
+$var reg 18 ^ read_ptr [17:0] $end
+$var wire 1 _ fifo_wenable $end
+$var wire 1 ` fifo_renable $end
+
+$scope module u_write_pointer $end
+$var parameter 32 a OSTD_NUM $end
+$var parameter 32 b PTR_SIZE $end
+$var wire 1 I clk_in $end
+$var wire 1 J areset_b $end
+$var wire 1 > full_empty_ind $end
+$var wire 1 K trans_enable $end
+$var wire 1 _ fifo_enable $end
+$var reg 18 c rd_wr_ptr [17:0] $end
+$upscope $end
+
+$scope module u_read_pointer $end
+$var parameter 32 d OSTD_NUM $end
+$var parameter 32 e PTR_SIZE $end
+$var wire 1 I clk_in $end
+$var wire 1 J areset_b $end
+$var wire 1 = full_empty_ind $end
+$var wire 1 L trans_enable $end
+$var wire 1 ` fifo_enable $end
+$var reg 18 f rd_wr_ptr [17:0] $end
+$upscope $end
+
+$scope module u_mem_array $end
+$var parameter 32 g DATA_WIDTH $end
+$var parameter 32 h OSTD_NUM $end
+$var parameter 32 i THRESHOLD_VALUE $end
+$var parameter 32 j PTR_SIZE $end
+$var wire 1 I clk_in $end
+$var wire 1 J areset_b $end
+$var wire 1 _ fifo_wenable $end
+$var wire 1 ` fifo_renable $end
+$var wire 1 M data_in [15] $end
+$var wire 1 N data_in [14] $end
+$var wire 1 O data_in [13] $end
+$var wire 1 P data_in [12] $end
+$var wire 1 Q data_in [11] $end
+$var wire 1 R data_in [10] $end
+$var wire 1 S data_in [9] $end
+$var wire 1 T data_in [8] $end
+$var wire 1 U data_in [7] $end
+$var wire 1 V data_in [6] $end
+$var wire 1 W data_in [5] $end
+$var wire 1 X data_in [4] $end
+$var wire 1 Y data_in [3] $end
+$var wire 1 Z data_in [2] $end
+$var wire 1 [ data_in [1] $end
+$var wire 1 \ data_in [0] $end
+$var wire 1 k write_ptr [17] $end
+$var wire 1 l write_ptr [16] $end
+$var wire 1 m write_ptr [15] $end
+$var wire 1 n write_ptr [14] $end
+$var wire 1 o write_ptr [13] $end
+$var wire 1 p write_ptr [12] $end
+$var wire 1 q write_ptr [11] $end
+$var wire 1 r write_ptr [10] $end
+$var wire 1 s write_ptr [9] $end
+$var wire 1 t write_ptr [8] $end
+$var wire 1 u write_ptr [7] $end
+$var wire 1 v write_ptr [6] $end
+$var wire 1 w write_ptr [5] $end
+$var wire 1 x write_ptr [4] $end
+$var wire 1 y write_ptr [3] $end
+$var wire 1 z write_ptr [2] $end
+$var wire 1 { write_ptr [1] $end
+$var wire 1 | write_ptr [0] $end
+$var wire 1 } read_ptr [17] $end
+$var wire 1 ~ read_ptr [16] $end
+$var wire 1 !! read_ptr [15] $end
+$var wire 1 "! read_ptr [14] $end
+$var wire 1 #! read_ptr [13] $end
+$var wire 1 $! read_ptr [12] $end
+$var wire 1 %! read_ptr [11] $end
+$var wire 1 &! read_ptr [10] $end
+$var wire 1 '! read_ptr [9] $end
+$var wire 1 (! read_ptr [8] $end
+$var wire 1 )! read_ptr [7] $end
+$var wire 1 *! read_ptr [6] $end
+$var wire 1 +! read_ptr [5] $end
+$var wire 1 ,! read_ptr [4] $end
+$var wire 1 -! read_ptr [3] $end
+$var wire 1 .! read_ptr [2] $end
+$var wire 1 /! read_ptr [1] $end
+$var wire 1 0! read_ptr [0] $end
+$var wire 1 - data_out [15] $end
+$var wire 1 . data_out [14] $end
+$var wire 1 / data_out [13] $end
+$var wire 1 0 data_out [12] $end
+$var wire 1 1 data_out [11] $end
+$var wire 1 2 data_out [10] $end
+$var wire 1 3 data_out [9] $end
+$var wire 1 4 data_out [8] $end
+$var wire 1 5 data_out [7] $end
+$var wire 1 6 data_out [6] $end
+$var wire 1 7 data_out [5] $end
+$var wire 1 8 data_out [4] $end
+$var wire 1 9 data_out [3] $end
+$var wire 1 : data_out [2] $end
+$var wire 1 ; data_out [1] $end
+$var wire 1 < data_out [0] $end
+$upscope $end
+
+$scope module u_monitor_signal $end
+$var parameter 32 1! OSTD_NUM $end
+$var parameter 32 2! PTR_SIZE $end
+$var wire 1 I clk_in $end
+$var wire 1 J areset_b $end
+$var wire 1 L trans_read $end
+$var wire 1 K trans_write $end
+$var wire 1 ` fifo_renable $end
+$var wire 1 _ fifo_wenable $end
+$var wire 1 3! read_ptr [17] $end
+$var wire 1 4! read_ptr [16] $end
+$var wire 1 5! read_ptr [15] $end
+$var wire 1 6! read_ptr [14] $end
+$var wire 1 7! read_ptr [13] $end
+$var wire 1 8! read_ptr [12] $end
+$var wire 1 9! read_ptr [11] $end
+$var wire 1 :! read_ptr [10] $end
+$var wire 1 ;! read_ptr [9] $end
+$var wire 1 <! read_ptr [8] $end
+$var wire 1 =! read_ptr [7] $end
+$var wire 1 >! read_ptr [6] $end
+$var wire 1 ?! read_ptr [5] $end
+$var wire 1 @! read_ptr [4] $end
+$var wire 1 A! read_ptr [3] $end
+$var wire 1 B! read_ptr [2] $end
+$var wire 1 C! read_ptr [1] $end
+$var wire 1 D! read_ptr [0] $end
+$var wire 1 E! write_ptr [17] $end
+$var wire 1 F! write_ptr [16] $end
+$var wire 1 G! write_ptr [15] $end
+$var wire 1 H! write_ptr [14] $end
+$var wire 1 I! write_ptr [13] $end
+$var wire 1 J! write_ptr [12] $end
+$var wire 1 K! write_ptr [11] $end
+$var wire 1 L! write_ptr [10] $end
+$var wire 1 M! write_ptr [9] $end
+$var wire 1 N! write_ptr [8] $end
+$var wire 1 O! write_ptr [7] $end
+$var wire 1 P! write_ptr [6] $end
+$var wire 1 Q! write_ptr [5] $end
+$var wire 1 R! write_ptr [4] $end
+$var wire 1 S! write_ptr [3] $end
+$var wire 1 T! write_ptr [2] $end
+$var wire 1 U! write_ptr [1] $end
+$var wire 1 V! write_ptr [0] $end
+$var reg 1 W! full_ind $end
+$var reg 1 X! empty_ind $end
+$var reg 1 Y! overflow_ind $end
+$var reg 1 Z! underflow_ind $end
+$var reg 1 [! threshold_ind $end
+$var wire 1 \! ptr_msb_compare $end
+$var wire 1 ]! overflow_set $end
+$var wire 1 ^! underflow_set $end
+$var wire 1 _! ptr_equal $end
+$var wire 1 `! ptr_result [17] $end
+$var wire 1 a! ptr_result [16] $end
+$var wire 1 b! ptr_result [15] $end
+$var wire 1 c! ptr_result [14] $end
+$var wire 1 d! ptr_result [13] $end
+$var wire 1 e! ptr_result [12] $end
+$var wire 1 f! ptr_result [11] $end
+$var wire 1 g! ptr_result [10] $end
+$var wire 1 h! ptr_result [9] $end
+$var wire 1 i! ptr_result [8] $end
+$var wire 1 j! ptr_result [7] $end
+$var wire 1 k! ptr_result [6] $end
+$var wire 1 l! ptr_result [5] $end
+$var wire 1 m! ptr_result [4] $end
+$var wire 1 n! ptr_result [3] $end
+$var wire 1 o! ptr_result [2] $end
+$var wire 1 p! ptr_result [1] $end
+$var wire 1 q! ptr_result [0] $end
+$upscope $end
+$upscope $end
+$upscope $end
+
+$scope begin std $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0(
+0)
+0*
+0+
+b0 ,
+b0 ]
+b0 ^
+b0 c
+b0 f
+0W!
+1X!
+0Y!
+0Z!
+0[!
+b0 C
+b0 D
+b11111010000 !
+b10000 "
+b10010 #
+b10010 $
+b1000 %
+b1000000 &
+b100000 '
+b10000 E
+b10010 F
+b1001 G
+b101 H
+b10010 a
+b101 b
+b10010 d
+b101 e
+b10000 g
+b10010 h
+b1001 i
+b101 j
+b10010 1!
+b101 2!
+b0 B
+0<
+0;
+0:
+09
+08
+07
+06
+05
+04
+03
+02
+01
+00
+0/
+0.
+0-
+1=
+0>
+0?
+0@
+0A
+0_
+0`
+0\!
+0]!
+0^!
+1_!
+0q!
+0p!
+0o!
+0n!
+0m!
+0l!
+0k!
+0j!
+0i!
+0h!
+0g!
+0f!
+0e!
+0d!
+0c!
+0b!
+0a!
+0`!
+0I
+0J
+0L
+0K
+0\
+0[
+0Z
+0Y
+0X
+0W
+0V
+0U
+0T
+0S
+0R
+0Q
+0P
+0O
+0N
+0M
+0|
+0{
+0z
+0y
+0x
+0w
+0v
+0u
+0t
+0s
+0r
+0q
+0p
+0o
+0n
+0m
+0l
+0k
+00!
+0/!
+0.!
+0-!
+0,!
+0+!
+0*!
+0)!
+0(!
+0'!
+0&!
+0%!
+0$!
+0#!
+0"!
+0!!
+0~
+0}
+0D!
+0C!
+0B!
+0A!
+0@!
+0?!
+0>!
+0=!
+0<!
+0;!
+0:!
+09!
+08!
+07!
+06!
+05!
+04!
+03!
+0V!
+0U!
+0T!
+0S!
+0R!
+0Q!
+0P!
+0O!
+0N!
+0M!
+0L!
+0K!
+0J!
+0I!
+0H!
+0G!
+0F!
+0E!
+$end
+#10
+1(
+1I
+#20
+1)
+0(
+1J
+0I
+#30
+1(
+1I
+#38
+0)
+0J
+#40
+0(
+0I
+#50
+1*
+b1 ,
+1(
+1K
+1\
+1_
+1I
+#58
+1)
+1J
+#60
+0(
+0I
+#70
+0*
+b1 B
+1(
+0K
+0_
+1I
+#80
+0(
+0I
+#90
+1(
+1I
+#100
+0(
+0I
+#110
+1(
+1I
+#120
+1*
+b10 ,
+0(
+1K
+0\
+1[
+1_
+0I
+#130
+1(
+1I
+b1 c
+b1 C
+b1 ]
+1|
+1V!
+1q!
+0_!
+0X!
+0=
+#140
+0*
+b10 B
+0(
+0K
+0_
+0I
+#150
+1(
+1I
+#160
+0(
+0I
+#170
+1(
+1I
+#180
+0(
+0I
+#190
+1*
+b11 ,
+1(
+1K
+1\
+1_
+1I
+b10 c
+b10 C
+b10 ]
+0|
+1{
+0V!
+1U!
+0q!
+1p!
+#200
+0(
+0I
+#210
+0*
+b11 B
+1(
+0K
+0_
+1I
+#220
+0(
+0I
+#230
+1(
+1I
+#240
+0(
+0I
+#250
+1(
+1I
+#260
+1*
+b100 ,
+0(
+1K
+0\
+0[
+1Z
+1_
+0I
+#270
+1(
+1I
+b11 c
+b11 C
+b11 ]
+1|
+1V!
+1q!
+#280
+0*
+b100 B
+0(
+0K
+0_
+0I
+#290
+1(
+1I
+#300
+0(
+0I
+#310
+1(
+1I
+#320
+0(
+0I
+#330
+1*
+b101 ,
+1(
+1K
+1\
+1_
+1I
+b100 c
+b100 C
+b100 ]
+0|
+0{
+1z
+0V!
+0U!
+1T!
+0q!
+0p!
+1o!
+#340
+0(
+0I
+#350
+0*
+b101 B
+1(
+0K
+0_
+1I
+#360
+0(
+0I
+#370
+1(
+1I
+#380
+0(
+0I
+#390
+1(
+1I
+#400
+1*
+b110 ,
+0(
+1K
+0\
+1[
+1_
+0I
+#410
+1(
+1I
+b101 c
+b101 C
+b101 ]
+1|
+1V!
+1q!
+#420
+0*
+b110 B
+0(
+0K
+0_
+0I
+#430
+1(
+1I
+#440
+0(
+0I
+#450
+1(
+1I
+#460
+0(
+0I
+#470
+1*
+b111 ,
+1(
+1K
+1\
+1_
+1I
+b110 c
+b110 C
+b110 ]
+0|
+1{
+0V!
+1U!
+0q!
+1p!
+#480
+0(
+0I
+#490
+0*
+b111 B
+1(
+0K
+0_
+1I
+#500
+0(
+0I
+#510
+1(
+1I
+#520
+0(
+0I
+#530
+1(
+1I
+#540
+1*
+b1000 ,
+0(
+1K
+0\
+0[
+0Z
+1Y
+1_
+0I
+#550
+1(
+1I
+b111 c
+b111 C
+b111 ]
+1|
+1V!
+1q!
+#560
+0*
+b1000 B
+0(
+0K
+0_
+0I
+#570
+1(
+1I
+#580
+0(
+0I
+#590
+1(
+1I
+#600
+0(
+0I
+#610
+1*
+b1001 ,
+1(
+1K
+1\
+1_
+1I
+b1000 c
+b1000 C
+b1000 ]
+0|
+0{
+0z
+1y
+0V!
+0U!
+0T!
+1S!
+0q!
+0p!
+0o!
+1n!
+#620
+0(
+0I
+#630
+0*
+b1001 B
+1(
+0K
+0_
+1I
+#640
+0(
+0I
+#650
+1(
+1I
+#660
+0(
+0I
+#670
+1(
+1I
+#680
+1*
+b1010 ,
+0(
+1K
+0\
+1[
+1_
+0I
+#690
+1(
+1I
+b1001 c
+b1001 C
+b1001 ]
+1|
+1V!
+1q!
+#700
+0*
+b1010 B
+0(
+0K
+0_
+0I
+#710
+1(
+1I
+#720
+0(
+0I
+#730
+1(
+1I
+#740
+0(
+0I
+#750
+1*
+b1011 ,
+1(
+1K
+1\
+1_
+1I
+b1010 c
+b1010 C
+b1010 ]
+0|
+1{
+0V!
+1U!
+0q!
+1p!
+#760
+0(
+0I
+#770
+0*
+b1011 B
+1(
+0K
+0_
+1I
+#780
+0(
+0I
+#790
+1(
+1I
+#800
+0(
+0I
+#810
+1(
+1I
+#820
+1*
+b1100 ,
+0(
+1K
+0\
+0[
+1Z
+1_
+0I
+#830
+1(
+1I
+b1011 c
+b1011 C
+b1011 ]
+1|
+1V!
+1q!
+#840
+0*
+b1100 B
+0(
+0K
+0_
+0I
+#850
+1(
+1I
+#860
+0(
+0I
+#870
+1(
+1I
+#880
+0(
+0I
+#890
+1*
+b1101 ,
+1(
+1K
+1\
+1_
+1I
+b1100 c
+b1100 C
+b1100 ]
+0|
+0{
+1z
+0V!
+0U!
+1T!
+0q!
+0p!
+1o!
+#900
+0(
+0I
+#910
+0*
+b1101 B
+1(
+0K
+0_
+1I
+#920
+0(
+0I
+#930
+1(
+1I
+#940
+0(
+0I
+#950
+1(
+1I
+#960
+1*
+b1110 ,
+0(
+1K
+0\
+1[
+1_
+0I
+#970
+1(
+1I
+b1101 c
+b1101 C
+b1101 ]
+1|
+1V!
+1q!
+#980
+0*
+b1110 B
+0(
+0K
+0_
+0I
+#990
+1(
+1I
+#1000
+0(
+0I
+#1010
+1(
+1I
+#1020
+0(
+0I
+#1030
+1*
+b1111 ,
+1(
+1K
+1\
+1_
+1I
+b1110 c
+b1110 C
+b1110 ]
+0|
+1{
+0V!
+1U!
+0q!
+1p!
+#1040
+0(
+0I
+#1050
+0*
+b1111 B
+1(
+0K
+0_
+1I
+#1060
+0(
+0I
+#1070
+1(
+1I
+#1080
+0(
+0I
+#1090
+1(
+1I
+#1100
+1*
+b10000 ,
+0(
+1K
+0\
+0[
+0Z
+0Y
+1X
+1_
+0I
+#1110
+1(
+1I
+b1111 c
+b1111 C
+b1111 ]
+1|
+1V!
+1q!
+#1120
+0*
+b10000 B
+0(
+0K
+0_
+0I
+#1130
+1(
+1I
+#1140
+0(
+0I
+#1150
+1(
+1I
+#1160
+0(
+0I
+#1170
+1*
+b10001 ,
+1(
+1K
+1\
+1_
+1I
+b10000 c
+b10000 C
+b10000 ]
+0|
+0{
+0z
+0y
+1x
+0V!
+0U!
+0T!
+0S!
+1R!
+0q!
+0p!
+0o!
+0n!
+1m!
+#1180
+0(
+0I
+#1190
+0*
+b10001 B
+1(
+0K
+0_
+1I
+#1200
+b0 B
+0(
+0I
+#1210
+1(
+1I
+#1220
+1+
+0(
+1L
+1`
+1;
+0I
+#1230
+1(
+1I
+b1 f
+b1 D
+b1 ^
+10!
+1D!
+1q!
+1p!
+1o!
+1n!
+0m!
+1<
+#1240
+0+
+b1 B
+0(
+0L
+0`
+0<
+0;
+0I
+#1250
+1(
+1I
+#1260
+1+
+0(
+1L
+1`
+1<
+1;
+0I
+#1270
+1(
+1I
+b10 f
+b10 D
+b10 ^
+00!
+1/!
+0D!
+1C!
+0q!
+0<
+0;
+1:
+#1280
+0+
+b10 B
+0(
+0L
+0`
+0:
+0I
+#1290
+1(
+1I
+#1300
+1+
+0(
+1L
+1`
+1:
+0I
+#1310
+1(
+1I
+b11 f
+b11 D
+b11 ^
+10!
+1D!
+1q!
+0p!
+1<
+#1320
+0+
+b11 B
+0(
+0L
+0`
+0<
+0:
+0I
+#1330
+1(
+1I
+#1340
+1+
+0(
+1L
+1`
+1<
+1:
+0I
+#1350
+1(
+1I
+b100 f
+b100 D
+b100 ^
+00!
+0/!
+1.!
+0D!
+0C!
+1B!
+0q!
+0<
+1;
+#1360
+0+
+b100 B
+0(
+0L
+0`
+0;
+0:
+0I
+#1370
+1(
+1I
+#1380
+1+
+0(
+1L
+1`
+1;
+1:
+0I
+#1390
+1(
+1I
+b101 f
+b101 D
+b101 ^
+10!
+1D!
+1q!
+1p!
+0o!
+1<
+#1400
+0+
+b101 B
+0(
+0L
+0`
+0<
+0;
+0:
+0I
+#1410
+1(
+1I
+#1420
+1+
+0(
+1L
+1`
+1<
+1;
+1:
+0I
+#1430
+1(
+1I
+b110 f
+b110 D
+b110 ^
+00!
+1/!
+0D!
+1C!
+0q!
+0<
+0;
+0:
+19
+#1440
+0+
+b110 B
+0(
+0L
+0`
+09
+0I
+#1450
+1(
+1I
+#1460
+1+
+0(
+1L
+1`
+19
+0I
+#1470
+1(
+1I
+b111 f
+b111 D
+b111 ^
+10!
+1D!
+1q!
+0p!
+1<
+#1480
+0+
+b111 B
+0(
+0L
+0`
+0<
+09
+0I
+#1490
+1(
+1I
+#1500
+1+
+0(
+1L
+1`
+1<
+19
+0I
+#1510
+1(
+1I
+b1000 f
+b1000 D
+b1000 ^
+00!
+0/!
+0.!
+1-!
+0D!
+0C!
+0B!
+1A!
+0q!
+0<
+1;
+#1520
+0+
+b1000 B
+0(
+0L
+0`
+0;
+09
+0I
+#1530
+1(
+1I
+#1540
+1+
+0(
+1L
+1`
+1;
+19
+0I
+#1550
+1(
+1I
+b1001 f
+b1001 D
+b1001 ^
+10!
+1D!
+1q!
+1p!
+1o!
+0n!
+1<
+#1560
+0+
+b1001 B
+0(
+0L
+0`
+0<
+0;
+09
+0I
+#1570
+1(
+1I
+#1580
+1+
+0(
+1L
+1`
+1<
+1;
+19
+0I
+#1590
+1(
+1I
+b1010 f
+b1010 D
+b1010 ^
+00!
+1/!
+0D!
+1C!
+0q!
+0<
+0;
+1:
+#1600
+0+
+b1010 B
+0(
+0L
+0`
+0:
+09
+0I
+#1610
+1(
+1I
+#1620
+1+
+0(
+1L
+1`
+1:
+19
+0I
+#1630
+1(
+1I
+b1011 f
+b1011 D
+b1011 ^
+10!
+1D!
+1q!
+0p!
+1<
+#1640
+0+
+b1011 B
+0(
+0L
+0`
+0<
+0:
+09
+0I
+#1650
+1(
+1I
+#1660
+1+
+0(
+1L
+1`
+1<
+1:
+19
+0I
+#1670
+1(
+1I
+b1100 f
+b1100 D
+b1100 ^
+00!
+0/!
+1.!
+0D!
+0C!
+1B!
+0q!
+0<
+1;
+#1680
+0+
+b1100 B
+0(
+0L
+0`
+0;
+0:
+09
+0I
+#1690
+1(
+1I
+#1700
+1+
+0(
+1L
+1`
+1;
+1:
+19
+0I
+#1710
+1(
+1I
+b1101 f
+b1101 D
+b1101 ^
+10!
+1D!
+1q!
+1p!
+0o!
+1<
+#1720
+0+
+b1101 B
+0(
+0L
+0`
+0<
+0;
+0:
+09
+0I
+#1730
+1(
+1I
+#1740
+1+
+0(
+1L
+1`
+1<
+1;
+1:
+19
+0I
+#1750
+1(
+1I
+b1110 f
+b1110 D
+b1110 ^
+00!
+1/!
+0D!
+1C!
+0q!
+0<
+0;
+0:
+09
+18
+#1760
+0+
+b1110 B
+0(
+0L
+0`
+08
+0I
+#1770
+1(
+1I
+#1780
+1+
+0(
+1L
+1`
+18
+0I
+#1790
+1(
+1I
+b1111 f
+b1111 D
+b1111 ^
+10!
+1D!
+1q!
+0p!
+1<
+#1800
+0+
+b1111 B
+0(
+0L
+0`
+0<
+08
+0I
+#1810
+1(
+1I
+#1820
+1+
+0(
+1L
+1`
+1<
+18
+0I
+#1830
+1(
+1I
+b10000 f
+b10000 D
+b10000 ^
+00!
+0/!
+0.!
+0-!
+1,!
+0D!
+0C!
+0B!
+0A!
+1@!
+0q!
+0<
+08
+1_!
+1X!
+1^!
+1=
+0`
+#1840
+0+
+b10000 B
+0(
+0L
+0^!
+0I
+#1850
+1(
+1I
+#1860
+1+
+0(
+1L
+1^!
+0I
+#1870
+1(
+1I
+1Z!
+1A
+#1880
+0+
+b10001 B
+0(
+0L
+0^!
+0I
+#1890
+1(
+1I
+#1900
+0(
+0I
+#1910
+1(
+1I
+#1920
+0(
+0I
+#1930
+1(
+1I
+#1940
+0(
+0I
+#1950
+1(
+1I
+#1960
+0(
+0I
+#1970
+1(
+1I
+#1980
+0(
+0I
+#1990
+1(
+1I
