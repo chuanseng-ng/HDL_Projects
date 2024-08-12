@@ -39,8 +39,10 @@ module mips_cpu_tb #() ();
     end
 
     initial begin
-        //$dumpfile("16bit_MIPS.vcd");
-        //$dumpvars();
+        $display("16bits asynchronous MIPS Processor");
+
+        $dumpfile("16bit_MIPS.vcd");
+        $dumpvars();
         main;
     end
 
