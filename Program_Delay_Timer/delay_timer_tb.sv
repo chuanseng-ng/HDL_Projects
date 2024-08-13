@@ -3,7 +3,7 @@
 module delay_timer_tb #() ();
 
     parameter int WEIGHT_BIT_WIDTH = 8;
-    parameter int ENDTIME          = 140000;
+    parameter int ENDTIME          = 500000;
 
     reg clk;
     reg rst_n;
@@ -49,11 +49,140 @@ module delay_timer_tb #() ();
             // Initialize inputs
             rst_n         = 0;
 
+            // One-shot mode
             #1000;
             weighted_bits = 10;
             mode_a        = 0;
             mode_b        = 0;
             rst_n         = 1;
+            trigger_in    = 0;
+
+            #500;
+            trigger_in    = 1;
+
+            #15000;
+            trigger_in    = 0;
+
+            #15000;
+            trigger_in    = 1;
+
+            #2000;
+            trigger_in    = 0;
+
+            #2000;
+            trigger_in    = 1;
+
+            #2000;
+            trigger_in    = 0;
+
+            #20000;
+            trigger_in    = 1;
+
+            #30000;
+            trigger_in    = 0;
+
+            #2000;
+            trigger_in    = 1;
+
+            #2000;
+            trigger_in    = 0;
+
+            #4000;
+            trigger_in    = 1;
+
+            #10000;
+            rst_n         = 0;
+
+            // Delay Operate mode
+            #10000;
+            rst_n         = 1;
+            mode_b        = 1;
+            trigger_in    = 0;
+
+            #500;
+            trigger_in    = 1;
+
+            #15000;
+            trigger_in    = 0;
+
+            #15000;
+            trigger_in    = 1;
+
+            #2000;
+            trigger_in    = 0;
+
+            #2000;
+            trigger_in    = 1;
+
+            #2000;
+            trigger_in    = 0;
+
+            #20000;
+            trigger_in    = 1;
+
+            #30000;
+            trigger_in    = 0;
+
+            #2000;
+            trigger_in    = 1;
+
+            #2000;
+            trigger_in    = 0;
+
+            #4000;
+            trigger_in    = 1;
+
+            #10000;
+            rst_n         = 0;
+
+            // Delayed Release mode
+            #10000;
+            rst_n         = 1;
+            mode_a        = 1;
+            mode_b        = 0;
+            trigger_in    = 0;
+
+            #500;
+            trigger_in    = 1;
+
+            #15000;
+            trigger_in    = 0;
+
+            #15000;
+            trigger_in    = 1;
+
+            #2000;
+            trigger_in    = 0;
+
+            #2000;
+            trigger_in    = 1;
+
+            #2000;
+            trigger_in    = 0;
+
+            #20000;
+            trigger_in    = 1;
+
+            #30000;
+            trigger_in    = 0;
+
+            #2000;
+            trigger_in    = 1;
+
+            #2000;
+            trigger_in    = 0;
+
+            #4000;
+            trigger_in    = 1;
+
+            #10000;
+            rst_n         = 0;
+
+            // Dual Delay mode
+            #10000;
+            rst_n         = 1;
+            mode_a        = 1;
+            mode_b        = 1;
             trigger_in    = 0;
 
             #500;
