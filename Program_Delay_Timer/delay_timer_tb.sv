@@ -1,19 +1,21 @@
+//! @title Programmable Digital Delay Timer Testbench
+
 `timescale 1ns/1ps
 
 module delay_timer_tb #() ();
 
-    parameter int WEIGHT_BIT_WIDTH = 8;
-    parameter int ENDTIME          = 500000;
+    parameter int WEIGHT_BIT_WIDTH = 8;      //! Defines weighted_bits width
+    parameter int ENDTIME          = 500000; //! Simulation duration - In ns
 
-    reg clk;
-    reg rst_n;
-    reg trigger_in;
-    reg mode_a;
-    reg mode_b;
+    reg clk;        //! Clock source
+    reg rst_n;      //! Reset source - Active low
+    reg trigger_in; //! Delay trigger input
+    reg mode_a;     //! Controls delay_mode bit 0
+    reg mode_b;     //! Controls delay_mode bit 1
 
-    reg [WEIGHT_BIT_WIDTH-1:0] weighted_bits;
+    reg [WEIGHT_BIT_WIDTH-1:0] weighted_bits; //! Programs delay based on equation (Refer to spec)
 
-    wire delay_out_n;
+    wire delay_out_n; //! Amount of delay provided by delay_timer
 
     delay_timer #(
         .WEIGHT_BIT_WIDTH (WEIGHT_BIT_WIDTH)
@@ -43,13 +45,12 @@ module delay_timer_tb #() ();
         join
     endtask
 
-    //TODO: Add more stimulus for delay_mode = 01/10/11
     task static trigger_rst_gen;
         begin
-            // Initialize inputs
+            //! Initialize inputs
             rst_n         = 0;
 
-            // One-shot mode
+            //! One-shot mode
             #1000;
             weighted_bits = 10;
             mode_a        = 0;
@@ -93,7 +94,7 @@ module delay_timer_tb #() ();
             #10000;
             rst_n         = 0;
 
-            // Delay Operate mode
+            //! Delay Operate mode
             #10000;
             rst_n         = 1;
             mode_b        = 1;
@@ -135,7 +136,7 @@ module delay_timer_tb #() ();
             #10000;
             rst_n         = 0;
 
-            // Delayed Release mode
+            //! Delayed Release mode
             #10000;
             rst_n         = 1;
             mode_a        = 1;
@@ -178,7 +179,7 @@ module delay_timer_tb #() ();
             #10000;
             rst_n         = 0;
 
-            // Dual Delay mode
+            //! Dual Delay mode
             #10000;
             rst_n         = 1;
             mode_a        = 1;
