@@ -43,6 +43,7 @@ module delay_timer_tb #() ();
         join
     endtask
 
+    //TODO: Add more stimulus for delay_mode = 01/10/11
     task static trigger_rst_gen;
         begin
             // Initialize inputs

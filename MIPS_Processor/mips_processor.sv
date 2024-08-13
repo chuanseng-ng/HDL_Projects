@@ -68,6 +68,7 @@
     --   10  |   xxxx   |   100  |      slt      | I-type: slti
 */
 
+//TODO: Fix x-prop issue
 module mips_processor #(
     parameter int ADDR_WIDTH = 16,
     parameter int DATA_WIDTH = 16,
