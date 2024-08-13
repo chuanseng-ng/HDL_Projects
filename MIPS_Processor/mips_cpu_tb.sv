@@ -5,7 +5,7 @@
 
 module mips_cpu_tb #() ();
 
-    parameter int ENDTIME    = 2000;
+    parameter int ENDTIME    = 20000;
     parameter int ADDR_WIDTH = 16;
     parameter int DATA_WIDTH = 16;
     parameter int INSTR_NUM  = 15;
