@@ -74,7 +74,7 @@ module delay_timer #(
                     if (~rst_n) begin
                         out_low        <= 0;
                         timer_start    <= 0;
-                        reset_timer_d0 <= 0;
+                        reset_timer_d0 <= 1;
                     end else if (trigger_rise) begin
                         out_low        <= 1;
                         timer_start    <= 1;
@@ -96,7 +96,7 @@ module delay_timer #(
                         reset_timer_d0 <= 0;
                     end else if (trigger_rise) begin
                         timer_start    <= 1;
-                        reset_timer_d0 <= 1;
+                        reset_timer_d0 <= 0;
                     end else if (trigger_fall || ~trigger_in) begin
                         out_low        <= 0;
                         timer_start    <= 0;
