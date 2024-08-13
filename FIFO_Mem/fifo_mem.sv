@@ -28,32 +28,35 @@
 */
 
 
-// Main module
+//! @title FIFO Memory
+
 module fifo_mem #(
-    parameter int DATA_WIDTH      = 32,
-    parameter int OSTD_NUM        = 4,
-    parameter int THRESHOLD_VALUE = OSTD_NUM/2
+    parameter int DATA_WIDTH      = 32,        //! Transaction data width
+    parameter int OSTD_NUM        = 4,         //! Number of outstanding transactions
+    parameter int THRESHOLD_VALUE = OSTD_NUM/2 //! Minimum numbr of expected values in FIFO
 ) (
-    input clk_in,
-    input areset_b,
-    input trans_write,
-    input trans_read,
+    input clk_in,      //! Clock source
+    input areset_b,    //! Reset source - Active low
+    input trans_read,  //! Transaction read request
+    input trans_write, //! Transaction write request
 
-    input [DATA_WIDTH-1:0] data_in,
+    input [DATA_WIDTH-1:0] data_in, //! Transaction data input
 
-    output [DATA_WIDTH-1:0] data_out,
+    output [DATA_WIDTH-1:0] data_out, //! Transaction data output
 
-    output full_ind,
-    output empty_ind,
-    output overflow_ind,
-    output underflow_ind,
-    output threshold_ind
+    output full_ind,      //! FIFO full indicator
+    output empty_ind,     //! FIFO empty indicator
+    output overflow_ind,  //! FIFO overflow indicator
+    output underflow_ind, //! FIFO underflow indicator
+    output threshold_ind  //! FIFO threshold indicator
 );
-    parameter int PTR_SIZE = (OSTD_NUM > 1) ? $clog2(OSTD_NUM) : 1;
+    parameter int PTR_SIZE = (OSTD_NUM > 1) ? $clog2(OSTD_NUM) : 1; //! Set pointer size to be 2^N = OSTD_NUM - Unused parameter
 
-    reg [OSTD_NUM-1:0] write_ptr, read_ptr;
+    reg [OSTD_NUM-1:0] read_ptr;  //! Read pointer
+    reg [OSTD_NUM-1:0] write_ptr; //! Write pointer
 
-    wire fifo_wenable, fifo_renable;
+    wire fifo_renable; //! FIFO write enable
+    wire fifo_wenable; //! FIFO read enable
 
     rd_wr_ptr #(
         .OSTD_NUM (OSTD_NUM),

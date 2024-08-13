@@ -1,24 +1,24 @@
 // Sub-module -- Memory Array Storage
 module memory_array #(
-    parameter int DATA_WIDTH      = 32,
-    parameter int OSTD_NUM        = 8,
-    parameter int THRESHOLD_VALUE = OSTD_NUM/2,
-    parameter int PTR_SIZE        = (OSTD_NUM > 1) ? $clog2(OSTD_NUM) : 1
+    parameter int DATA_WIDTH      = 32,                                   //! Transaction data width
+    parameter int OSTD_NUM        = 8,                                    //! Number of outstanding transactions
+    parameter int THRESHOLD_VALUE = OSTD_NUM/2,                           //! Minimum number of expected values in FIFO
+    parameter int PTR_SIZE        = (OSTD_NUM > 1) ? $clog2(OSTD_NUM) : 1 //! Set pointer size to be 2^N = OSTD_NUM - Unused parameter
 ) (
-    input clk_in,
-    input areset_b,
-    input fifo_wenable,
-    input fifo_renable,
+    input clk_in,       //! Clock source
+    input areset_b,     //! Reset source - Active low
+    input fifo_renable, //! FIFO read enable
+    input fifo_wenable, //! FIFO write enable
 
-    input [DATA_WIDTH-1:0] data_in,
-    input [OSTD_NUM-1:0]   write_ptr,
-    input [OSTD_NUM-1:0]   read_ptr,
+    input [DATA_WIDTH-1:0] data_in,   //! Transaction data input (Write)
+    input [OSTD_NUM-1:0]   read_ptr,  //! Read pointer
+    input [OSTD_NUM-1:0]   write_ptr, //! Write pointer
 
-    output [DATA_WIDTH-1:0] data_out
+    output [DATA_WIDTH-1:0] data_out //! Transaction data output (Read)
 );
-    reg [DATA_WIDTH-1:0] data_reg [OSTD_NUM-1:0];
+    reg [DATA_WIDTH-1:0] data_reg [OSTD_NUM-1:0]; //! Memory array
 
-    always @(posedge clk_in or negedge areset_b) begin
+    always @(posedge clk_in or negedge areset_b) begin: mem_array_storage
         if (~areset_b) begin
             for (int i = 0; i < OSTD_NUM-1; i++) begin
                 data_reg[i] <= {(DATA_WIDTH){1'b0}};
@@ -31,4 +31,5 @@ module memory_array #(
     end
 
     assign data_out = (fifo_renable) ? data_reg[read_ptr] : 'd0;
+
 endmodule
