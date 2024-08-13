@@ -6,7 +6,7 @@
 ## Status:
 - 20240810 -> FIFO Memory                        - RTL Done + Verified Ok
 - 20240810 -> 16-bit Single-Cycle MIPS Processor - RTL Done + Compile Ok
-- 20240813 -> Programmable Digital Delay Timer   - RTL Done + Compile Ok
+- 20240813 -> Programmable Digital Delay Timer   - RTL Done + Verified Ok
 
 ## To-Do:
 - 32-bit Unsigned Divider
