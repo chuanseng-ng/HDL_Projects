@@ -5,10 +5,10 @@
 
 module mips_cpu_tb #() ();
 
-    parameter int ENDTIME    = 2000;
+    parameter int ENDTIME    = 5000;
     parameter int ADDR_WIDTH = 16;
     parameter int DATA_WIDTH = 16;
-    parameter int INSTR_NUM  = 15;
+    parameter int INSTR_NUM  = 16;
     parameter int SHIFT_BIT  = 1;
     parameter int MEM_SIZE   = 256;
     parameter int PC_WIDTH   = 16;
