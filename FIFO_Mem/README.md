@@ -11,6 +11,7 @@
          <li>Width of read/write pointer is taken to be log2(OSTD_NUM) unless OSTD_NUM == 0 then pointer width = 1</li>
       </ul>
 
+   <br>
    <li> Monitoring signals include the following:</li>
       <ul>
          <li>Full      - High when FIFO is full</li>
@@ -19,7 +20,8 @@
          <li>Underflow - High when FIFO is empty & transaction is reading from FIFO (Might be redundant)</li>
          <li>Threshold - High when number of data in FIFO is lesser than threshold value (Might be redundant)</li>
       </ul>
-      
+   
+   <br>
    <li> Operation:</li>
       <ul>
          <li>Write operation will take 1 clock cycle to be stored in FIFO memory array</li>

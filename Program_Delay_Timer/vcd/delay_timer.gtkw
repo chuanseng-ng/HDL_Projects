@@ -1,0 +1,28 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Mon Aug 12 14:34:53 2024
+[*]
+[dumpfile] "C:\Users\waele\.teroshdl\build\delay_timer.vcd"
+[dumpfile_mtime] "Mon Aug 12 14:33:50 2024"
+[dumpfile_size] 8798
+[savefile] "C:\Users\waele\.teroshdl\build\delay_timer.gtkw"
+[timestart] 0
+[size] 3220 600
+[pos] -1 -1
+*-23.237555 39560000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] delay_timer_tb.
+[sst_width] 197
+[signals_width] 150
+[sst_expanded] 1
+[sst_vpaned_height] 153
+@28
+delay_timer_tb.u_delay_timer.clk
+delay_timer_tb.u_delay_timer.rst_n
+delay_timer_tb.u_delay_timer.mode_a
+delay_timer_tb.u_delay_timer.mode_b
+delay_timer_tb.u_delay_timer.delay_mode[1:0]
+delay_timer_tb.u_delay_timer.trigger_in
+@29
+delay_timer_tb.u_delay_timer.delay_out_n
+[pattern_trace] 1
+[pattern_trace] 0

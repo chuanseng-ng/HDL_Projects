@@ -9,7 +9,8 @@
    <ul>
       <li>Design uses parameter to control bit-width declaration - Larger bit-width is possible with some modification
    </ul>
-   
+
+<br>
 <li>Instruction Format:</li>
    
    |    Name    |        |        | Fields |        |            |               Comments             |
@@ -18,7 +19,8 @@
    |  R-format  |   op   |   rs   |   rt   |   rd   |   funct    | Arithmetic instruction format      |
    |  I-format  |   op   |   rs   |   rt   | Address/immediate | | Transfer, branch, immediate format |
    |  J-format  |   op   |        |    | target address |        | Jump instruction format            |
-   
+
+<br>
 <li>Instruction Set Architecture:</li>
    
    | Name | Format |        |        |  Example |      |        | Comments       |
@@ -37,7 +39,8 @@
    |  j   |    J   |    2   |   500  |   500  |   500  |   500  | j 1000         |
    | jal  |    J   |    3   |   500  |   500  |   500  |   500  | jal 1000       |
    | slti |    I   |    1   |    2   |    1   |    7   |    7   | slti $1, $2, 7 |
-   
+
+<br>
 <li>Description:</li>
    <ul>
       <li>Add      - R[rd] = R[rs] + R[rt]</li>
@@ -59,7 +62,8 @@
          <li>BranchAddr = {7{immediate[6]}, immediate, 1'b0}</li>
       </ul>
    </ul>
-   
+
+<br>
 <li>Control Unit Design:</li>
    <ul>
       <li>Control Signal -</li>
