@@ -1,0 +1,35 @@
+[*]
+[*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
+[*] Thu Aug 22 07:13:26 2024
+[*]
+[dumpfile] "c:\Users\waele\Documents\Github\HDL_Projects\RISC_processor\vcd\risc_cpu.vcd"
+[dumpfile_mtime] "Thu Aug 22 07:12:07 2024"
+[dumpfile_size] 68246
+[savefile] "C:\Users\waele\Documents\Github\HDL_Projects\RISC_processor\vcd\risc_cpu.gtkw"
+[timestart] 0
+[size] 3440 1369
+[pos] -217 -217
+*-16.644892 5 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] risc_cpu_tb.
+[sst_width] 197
+[signals_width] 118
+[sst_expanded] 1
+[sst_vpaned_height] 423
+@28
+risc_cpu_tb.u_risc_cpu.clk
+#{risc_cpu_tb.u_risc_cpu.alu_op[1:0]} risc_cpu_tb.u_risc_cpu.alu_op[1] risc_cpu_tb.u_risc_cpu.alu_op[0]
+@22
+#{risc_cpu_tb.u_risc_cpu.opcode[3:0]} risc_cpu_tb.u_risc_cpu.opcode[3] risc_cpu_tb.u_risc_cpu.opcode[2] risc_cpu_tb.u_risc_cpu.opcode[1] risc_cpu_tb.u_risc_cpu.opcode[0]
+@28
+risc_cpu_tb.u_risc_cpu.mem_rd
+risc_cpu_tb.u_risc_cpu.beq
+@29
+risc_cpu_tb.u_risc_cpu.bne
+@28
+risc_cpu_tb.u_risc_cpu.jump
+risc_cpu_tb.u_risc_cpu.mem_to_reg
+risc_cpu_tb.u_risc_cpu.mem_wr
+risc_cpu_tb.u_risc_cpu.reg_wr
+risc_cpu_tb.u_risc_cpu.reg_dest
+[pattern_trace] 1
+[pattern_trace] 0
