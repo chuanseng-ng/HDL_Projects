@@ -120,9 +120,9 @@ module mips_processor #(
 
     // Instruction Memory
     instruction_mem #(
-        .PC_WIDTH   (PC_WIDTH),
-        .DATA_WIDTH (DATA_WIDTH),
-        .INSTR_NUM  (INSTR_NUM)
+        .PC_WIDTH   (PC_WIDTH),   // 16 bits
+        .DATA_WIDTH (DATA_WIDTH), // 16 bits
+        .INSTR_NUM  (INSTR_NUM)   // 15 bits
     ) u_instruction_mem (
         .cpu_pc          (pc_current),
         .cpu_instruction (cpu_instr)
@@ -157,7 +157,7 @@ module mips_processor #(
     assign reg_rd_addr_2 = cpu_instr[PC_WIDTH-7:PC_WIDTH-9];
 
     register_file #(
-        .DATA_WIDTH (DATA_WIDTH),
+        .DATA_WIDTH (DATA_WIDTH), // 16 bits
         .REG_NUM    (8)
     ) u_register_file (
         .clk_in        (clk),
@@ -194,8 +194,8 @@ module mips_processor #(
 
     // ALU
     alu_unit #(
-        .ALU_SIZE  (ADDR_WIDTH),
-        .SHIFT_BIT (SHIFT_BIT)
+        .ALU_SIZE  (ADDR_WIDTH), // 16 bits
+        .SHIFT_BIT (SHIFT_BIT)   // 1 bit
     ) u_alu_unit (
         .alu_in_a  (reg_rd_data_1),
         .alu_in_b  (read_data2),
@@ -233,9 +233,9 @@ module mips_processor #(
 
     // Data Memory
     data_memory #(
-        .ADDR_WIDTH (ADDR_WIDTH),
-        .DATA_WIDTH (DATA_WIDTH),
-        .MEM_SIZE   (MEM_SIZE)
+        .ADDR_WIDTH (ADDR_WIDTH), // 16 bits
+        .DATA_WIDTH (DATA_WIDTH), // 16 bits
+        .MEM_SIZE   (MEM_SIZE)    // 256 bits
     ) u_data_mem (
         .clk_in          (clk),
         .mem_wr_en       (cpu_mem_wr),
