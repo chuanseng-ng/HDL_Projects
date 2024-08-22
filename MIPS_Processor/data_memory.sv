@@ -13,14 +13,12 @@ module data_memory #(
 
     output [DATA_WIDTH-1:0] mem_data_out
 );
-    integer i;
-
     reg [DATA_WIDTH-1:0] data_ram [MEM_SIZE-1:0];
 
     wire [(ADDR_WIDTH/2)-1:0] ram_addr = mem_access_addr[(ADDR_WIDTH/2):1];
 
     initial begin
-        for (i = 0; i < MEM_SIZE; i++) begin
+        for (int i = 0; i < MEM_SIZE; i++) begin
             data_ram[i] <= {(DATA_WIDTH){1'b0}};
         end
     end
@@ -31,5 +29,6 @@ module data_memory #(
         end
     end
 
-    assign mem_data_out = (mem_rd_en == 1'b1) ? data_ram[ram_addr] : {(DATA_WIDTH){1'b0}};
+    assign mem_data_out = (mem_rd_en) ? data_ram[ram_addr] : {(DATA_WIDTH){1'b0}};
+
 endmodule

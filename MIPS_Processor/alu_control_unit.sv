@@ -22,4 +22,5 @@ module alu_control_unit #() (
             default: alu_ctrl = 3'b000;
         endcase
     end
+
 endmodule

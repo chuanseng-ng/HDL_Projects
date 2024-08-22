@@ -6,4 +6,5 @@ module jr_control_unit #() (
     output jr_ctrl
 );
     assign jr_ctrl = ({alu_opcode, alu_funct} == 6'b001000) ? 1'b1 : 1'b0;
+
 endmodule

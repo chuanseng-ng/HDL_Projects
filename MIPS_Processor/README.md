@@ -98,15 +98,17 @@
 </ul>
 
 ## Status:
+- 20240822 - Bug fix - X-propagation issue with most signals in design
 - 20240808 - V1 release
 - 20240807 - Init DB
 
 ## Changelist:
+- 20240822 - Bug fix
 - 20240810 - Compile fix
 - 20240808 - V1 release
 
 ## To-Do:
-- Fix x-propagation issue with most signals in design
+- 
 
 ## Reference:
 - https://www.fpga4student.com/2017/01/verilog-code-for-single-cycle-MIPS-processor.html
