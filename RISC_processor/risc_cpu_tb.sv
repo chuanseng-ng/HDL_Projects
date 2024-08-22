@@ -1,6 +1,6 @@
 `timescale 1ns/1ps
 
-`define SIM_TIME 160
+`define SIM_TIME 1600
 
 module risc_cpu_tb #() ();
 
@@ -11,6 +11,11 @@ module risc_cpu_tb #() ();
     );
 
     initial begin
+        $display("RISC CPU TB");
+
+        $dumpfile("risc_cpu.vcd");
+        $dumpvars();
+
         clk <= 0;
         #`SIM_TIME;
         $finish;
