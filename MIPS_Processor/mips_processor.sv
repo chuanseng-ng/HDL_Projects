@@ -85,14 +85,28 @@ module mips_processor #(
 );
     reg [PC_WIDTH-1:0] pc_current;
 
-    wire signed [PC_WIDTH-1:0] pc_next, pc2;
-    wire signed [PC_WIDTH-1:0] im_shift_1, pc_j, pc_beq, pc_4beq, pc_4beqj, pc_jr;
+    wire signed [PC_WIDTH-1:0] pc_next;
+    wire signed [PC_WIDTH-1:0] pc2;
+    wire signed [PC_WIDTH-1:0] im_shift_1;
+    wire signed [PC_WIDTH-1:0] pc_j;
+    wire signed [PC_WIDTH-1:0] pc_beq;
+    wire signed [PC_WIDTH-1:0] pc_4beq;
+    wire signed [PC_WIDTH-1:0] pc_4beqj;
+    wire signed [PC_WIDTH-1:0] pc_jr;
 
     wire [PC_WIDTH-1:0]   cpu_instr;
-    wire [1:0]            dest_reg, mem_to_reg, alu_opcode;
-    wire [DATA_WIDTH-1:0] reg_wr_data, reg_rd_data_1, reg_rd_data_2;
-    wire [2:0]            reg_wr_dest, reg_rd_addr_1, reg_rd_addr_2;
-    wire [PC_WIDTH-1:0]   sign_ext_im, zero_ext_im, imm_ext;
+    wire [1:0]            dest_reg;
+    wire [1:0]            mem_to_reg;
+    wire [1:0]            alu_opcode;
+    wire [DATA_WIDTH-1:0] reg_wr_data;
+    wire [DATA_WIDTH-1:0] reg_rd_data_1;
+    wire [DATA_WIDTH-1:0] reg_rd_data_2;
+    wire [2:0]            reg_wr_dest;
+    wire [2:0]            reg_rd_addr_1;
+    wire [2:0]            reg_rd_addr_2;
+    wire [PC_WIDTH-1:0]   sign_ext_im;
+    wire [PC_WIDTH-1:0]   zero_ext_im;
+    wire [PC_WIDTH-1:0]   imm_ext;
     wire [DATA_WIDTH-1:0] read_data2;
     wire [2:0]            alu_ctrl;
     wire [DATA_WIDTH-1:0] alu_out;
@@ -100,14 +114,19 @@ module mips_processor #(
     wire [DATA_WIDTH-1:0] mem_rd_data;
     wire [DATA_WIDTH-1:0] no_sign_ext;
 
-    wire cpu_jump, cpu_branch, cpu_mem_rd, cpu_mem_wr, cpu_alu_src, cpu_reg_wr;
+    wire cpu_jump;
+    wire cpu_branch;
+    wire cpu_mem_rd;
+    wire cpu_mem_wr;
+    wire cpu_alu_src;
+    wire cpu_reg_wr;
     wire jr_ctrl;
     wire zero_flag;
     wire beq_ctrl;
     wire sign_or_zero;
 
     // PC (Program Counter)
-    always @(posedge clk or negedge rst_n) begin
+    always @(posedge clk or negedge rst_n) begin: pc_current_update
         if (~rst_n) begin
             pc_current <= {(PC_WIDTH){1'b0}};
         end else begin
@@ -124,8 +143,8 @@ module mips_processor #(
         .DATA_WIDTH (DATA_WIDTH), // 16 bits
         .INSTR_NUM  (INSTR_NUM)   // 15 bits
     ) u_instruction_mem (
-        .cpu_pc          (pc_current),
-        .cpu_instruction (cpu_instr)
+        .cpu_pc          (pc_current), //! Input
+        .cpu_instruction (cpu_instr)   //! Output
     );
 
     // Jump Shift Left 1
@@ -133,18 +152,18 @@ module mips_processor #(
 
     // Control Unit
     cpu_control_unit #() u_cpu_control_unit (
-        .rst_n        (rst_n),
-        .cpu_opcode   (cpu_instr[PC_WIDTH-1:PC_WIDTH-3]),
-        .dest_reg     (dest_reg),
-        .mem_to_reg   (mem_to_reg),
-        .alu_opcode   (alu_opcode),
-        .cpu_jump     (cpu_jump),
-        .cpu_branch   (cpu_branch),
-        .cpu_mem_rd   (cpu_mem_rd),
-        .cpu_mem_wr   (cpu_mem_wr),
-        .cpu_alu_src  (cpu_alu_src),
-        .cpu_reg_wr   (cpu_reg_wr),
-        .sign_or_zero (sign_or_zero)
+        .rst_n        (rst_n),                            //! Input
+        .cpu_opcode   (cpu_instr[PC_WIDTH-1:PC_WIDTH-3]), //! Input
+        .dest_reg     (dest_reg),                         //! Output
+        .mem_to_reg   (mem_to_reg),                       //! Output
+        .alu_opcode   (alu_opcode),                       //! Output
+        .cpu_jump     (cpu_jump),                         //! Output
+        .cpu_branch   (cpu_branch),                       //! Output
+        .cpu_mem_rd   (cpu_mem_rd),                       //! Output
+        .cpu_mem_wr   (cpu_mem_wr),                       //! Output
+        .cpu_alu_src  (cpu_alu_src),                      //! Output
+        .cpu_reg_wr   (cpu_reg_wr),                       //! Output
+        .sign_or_zero (sign_or_zero)                      //! Output
     );
 
     // Multiplexer dest_reg
@@ -160,14 +179,14 @@ module mips_processor #(
         .DATA_WIDTH (DATA_WIDTH), // 16 bits
         .REG_NUM    (8)
     ) u_register_file (
-        .clk_in        (clk),
-        .reg_wr_en     (cpu_reg_wr),
-        .reg_wr_dest   (reg_wr_dest),
-        .reg_rd_addr_1 (reg_rd_addr_1),
-        .reg_rd_addr_2 (reg_rd_addr_2),
-        .reg_wr_data   (reg_wr_data),
-        .reg_rd_data_1 (reg_rd_data_1),
-        .reg_rd_data_2 (reg_rd_data_2)
+        .clk_in        (clk),           //! Input
+        .reg_wr_en     (cpu_reg_wr),    //! Input
+        .reg_wr_dest   (reg_wr_dest),   //! Input
+        .reg_rd_addr_1 (reg_rd_addr_1), //! Input
+        .reg_rd_addr_2 (reg_rd_addr_2), //! Input
+        .reg_wr_data   (reg_wr_data),   //! Input
+        .reg_rd_data_1 (reg_rd_data_1), //! Output
+        .reg_rd_data_2 (reg_rd_data_2)  //! Output
     );
 
     // Sign Extend
@@ -177,16 +196,16 @@ module mips_processor #(
 
     // JR Control Unit
     jr_control_unit #() u_jr_ctrl_unit (
-        .alu_opcode (alu_opcode),
-        .alu_funct  (cpu_instr[PC_WIDTH-13:0]),
-        .jr_ctrl    (jr_ctrl)
+        .alu_opcode (alu_opcode),               //! Input
+        .alu_funct  (cpu_instr[PC_WIDTH-13:0]), //! Input
+        .jr_ctrl    (jr_ctrl)                   //! Output
     );
 
     // ALU Control Unit
     alu_control_unit #() u_alu_ctrl_unit (
-        .alu_opcode (alu_opcode),
-        .alu_funct  (cpu_instr[PC_WIDTH-13:0]),
-        .alu_ctrl   (alu_ctrl)
+        .alu_opcode (alu_opcode),               //! Input
+        .alu_funct  (cpu_instr[PC_WIDTH-13:0]), //! Input
+        .alu_ctrl   (alu_ctrl)                  //! Output
     );
 
     //Multiplexer alu_src
@@ -197,11 +216,11 @@ module mips_processor #(
         .ALU_SIZE  (ADDR_WIDTH), // 16 bits
         .SHIFT_BIT (SHIFT_BIT)   // 1 bit
     ) u_alu_unit (
-        .alu_in_a  (reg_rd_data_1),
-        .alu_in_b  (read_data2),
-        .alu_sel   ({1'b0,alu_ctrl}),
-        .alu_out   (alu_out),
-        .carry_out (zero_flag)
+        .alu_in_a  (reg_rd_data_1),   //! Input
+        .alu_in_b  (read_data2),      //! Input
+        .alu_sel   ({1'b0,alu_ctrl}), //! Input
+        .alu_out   (alu_out),         //! Output
+        .carry_out (zero_flag)        //! Output
     );
 
     // Immediate shift 1
@@ -237,12 +256,12 @@ module mips_processor #(
         .DATA_WIDTH (DATA_WIDTH), // 16 bits
         .MEM_SIZE   (MEM_SIZE)    // 256 bits
     ) u_data_mem (
-        .clk_in          (clk),
-        .mem_wr_en       (cpu_mem_wr),
-        .mem_rd_en       (cpu_mem_rd),
-        .mem_access_addr (alu_out),
-        .mem_data_in     (reg_rd_data_2),
-        .mem_data_out    (mem_rd_data)
+        .clk_in          (clk),           //! Input
+        .mem_wr_en       (cpu_mem_wr),    //! Input
+        .mem_rd_en       (cpu_mem_rd),    //! Input
+        .mem_access_addr (alu_out),       //! Input
+        .mem_data_in     (reg_rd_data_2), //! Input
+        .mem_data_out    (mem_rd_data)    //! Output
     );
 
     // Write-back

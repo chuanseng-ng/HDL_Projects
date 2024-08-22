@@ -69,12 +69,12 @@ module cpu_control_unit #() (
                 3'b011: begin // jal operation
                     dest_reg     = 2'b10;
                     mem_to_reg   = 2'b10;
-                    alu_opcode   = 2'b11;
-                    cpu_jump     = 1'b0;
+                    alu_opcode   = 2'b00;
+                    cpu_jump     = 1'b1;
                     cpu_branch   = 1'b0;
                     cpu_mem_rd   = 1'b1;
                     cpu_mem_wr   = 1'b0;
-                    cpu_alu_src  = 1'b1;
+                    cpu_alu_src  = 1'b0;
                     cpu_reg_wr   = 1'b1;
                     sign_or_zero = 1'b1;
                 end
@@ -141,4 +141,5 @@ module cpu_control_unit #() (
             endcase
         end
     end
+
 endmodule
