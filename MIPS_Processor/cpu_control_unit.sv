@@ -1,22 +1,22 @@
 // Sub module - Instruction Memory for MIPS Processor
 module cpu_control_unit #() (
-    input rst_n,
+    input rst_n, //! Reset input - Active low
 
-    input [2:0] cpu_opcode,
+    input [2:0] cpu_opcode, //! CPU opcode input
 
-    output reg [1:0] dest_reg,
-    output reg [1:0] mem_to_reg,
-    output reg [1:0] alu_opcode,
+    output reg [1:0] dest_reg,   //! Multiplexer destination register
+    output reg [1:0] mem_to_reg, //! Memory to register logic
+    output reg [1:0] alu_opcode, //! Arithmetic logic unit opcode
 
-    output reg cpu_jump,
-    output reg cpu_branch,
-    output reg cpu_mem_rd,
-    output reg cpu_mem_wr,
-    output reg cpu_alu_src,
-    output reg cpu_reg_wr,
-    output reg sign_or_zero
+    output reg cpu_jump,    //! CPU Jump indicator
+    output reg cpu_branch,  //! CPU Branch indicator
+    output reg cpu_mem_rd,  //! CPU Read from Memory indicator
+    output reg cpu_mem_wr,  //! CPU Write to Memory indicator
+    output reg cpu_alu_src, //! CPU Source from ALU indicator
+    output reg cpu_reg_wr,  //! CPU Write to Register indicator
+    output reg sign_or_zero //! Signed or Zero indicator
 );
-    always_comb begin
+    always_comb begin: cpu_ctrl_operation
         if (~rst_n) begin
             dest_reg     = 2'b00;
             mem_to_reg   = 2'b00;
@@ -141,4 +141,5 @@ module cpu_control_unit #() (
             endcase
         end
     end
+
 endmodule

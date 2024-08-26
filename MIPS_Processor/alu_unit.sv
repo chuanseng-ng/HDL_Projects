@@ -20,22 +20,22 @@
     -- Equal Compare       - alu_out = 1 if A == B else 0
 */
 module alu_unit #(
-    parameter int ALU_SIZE  = 16,
-    parameter int SHIFT_BIT = 1
+    parameter int ALU_SIZE  = 16, //! Arithmetic logic unit bit width
+    parameter int SHIFT_BIT = 1   //! Number of bits to shift
 ) (
-    input [ALU_SIZE-1:0] alu_in_a,
-    input [ALU_SIZE-1:0] alu_in_b,
-    input [3:0]          alu_sel,
+    input [ALU_SIZE-1:0] alu_in_a, //! ALU input A
+    input [ALU_SIZE-1:0] alu_in_b, //! ALU input B
+    input [3:0]          alu_sel,  //! ALU operation selector
 
-    output [ALU_SIZE-1:0] alu_out,
+    output [ALU_SIZE-1:0] alu_out, //! ALU output
 
-    output carry_out
+    output carry_out //! ALU carry bit output
 );
-    reg [ALU_SIZE-1:0] alu_result;
+    reg [ALU_SIZE-1:0] alu_result; //! ALU operation result
 
-    wire [ALU_SIZE:0]   carry_out_temp;
+    wire [ALU_SIZE:0]   carry_out_temp; //! ALU carry bit temp holder
 
-    always_comb begin
+    always_comb begin: alu_operation
         case (alu_sel)
             4'b0000: alu_result = alu_in_a + alu_in_b;                            // Addition
             4'b0001: alu_result = alu_in_a - alu_in_b;                            // Subtraction
