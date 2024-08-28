@@ -1,25 +1,32 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Wed Aug 28 11:05:27 2024
+[*] Wed Aug 28 15:11:56 2024
 [*]
 [dumpfile] "C:\Users\waele\.teroshdl\build\digital_timer.vcd"
+[dumpfile_mtime] "Wed Aug 28 15:03:05 2024"
+[dumpfile_size] 711259
 [savefile] "C:\Users\waele\Documents\Github\HDL_Projects\Digital_Timer\vcd\digital_timer.gtkw"
 [timestart] 0
-[size] 1920 1009
-[pos] 580 1171
+[size] 3440 1369
+[pos] -321 -321
 *-10.338978 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] digital_timer_tb.
 [treeopen] digital_timer_tb.u_dut.
 [treeopen] digital_timer_tb.u_dut.gen_digital_display_iter[0].
 [treeopen] digital_timer_tb.u_dut.gen_digital_display_iter[0].genblk1.
 [sst_width] 197
-[signals_width] 206
+[signals_width] 222
 [sst_expanded] 1
-[sst_vpaned_height] 297
+[sst_vpaned_height] 822
 @28
 digital_timer_tb.u_dut.sys_clk
 digital_timer_tb.u_dut.rst_b
 digital_timer_tb.u_dut.int_reset_b
+@29
+digital_timer_tb.u_dut.timer_clear
+@28
+digital_timer_tb.u_dut.timer_pause
+digital_timer_tb.u_dut.timer_reset
 digital_timer_tb.u_dut.timer_clk
 @22
 digital_timer_tb.u_dut.timer_clk_count[3:0]
@@ -27,9 +34,11 @@ digital_timer_tb.u_dut.digital_clock_in[41:0]
 @28
 digital_timer_tb.u_dut.gen_digital_display_iter[0].genblk1.u_sec_first_digit_iter.prev_overflow_ind
 @22
-#{digital_timer_tb.u_dut.gen_digital_display_iter[0].genblk1.u_sec_first_digit_iter.timer_clk_count[3:0]} digital_timer_tb.u_dut.gen_digital_display_iter[0].genblk1.u_sec_first_digit_iter.timer_clk_count[3] digital_timer_tb.u_dut.gen_digital_display_iter[0].genblk1.u_sec_first_digit_iter.timer_clk_count[2] digital_timer_tb.u_dut.gen_digital_display_iter[0].genblk1.u_sec_first_digit_iter.timer_clk_count[1] digital_timer_tb.u_dut.gen_digital_display_iter[0].genblk1.u_sec_first_digit_iter.timer_clk_count[0]
 #{digital_timer_tb.u_dut.gen_digital_display_iter[0].genblk1.u_sec_first_digit_iter.clock_digit_in[6:0]} digital_timer_tb.u_dut.gen_digital_display_iter[0].genblk1.u_sec_first_digit_iter.clock_digit_in[6] digital_timer_tb.u_dut.gen_digital_display_iter[0].genblk1.u_sec_first_digit_iter.clock_digit_in[5] digital_timer_tb.u_dut.gen_digital_display_iter[0].genblk1.u_sec_first_digit_iter.clock_digit_in[4] digital_timer_tb.u_dut.gen_digital_display_iter[0].genblk1.u_sec_first_digit_iter.clock_digit_in[3] digital_timer_tb.u_dut.gen_digital_display_iter[0].genblk1.u_sec_first_digit_iter.clock_digit_in[2] digital_timer_tb.u_dut.gen_digital_display_iter[0].genblk1.u_sec_first_digit_iter.clock_digit_in[1] digital_timer_tb.u_dut.gen_digital_display_iter[0].genblk1.u_sec_first_digit_iter.clock_digit_in[0]
-@23
 digital_timer_tb.u_dut.gen_digital_display_iter[0].genblk1.u_sec_first_digit_iter.clock_digit_out[6:0]
+@28
+digital_timer_tb.u_dut.sec_digit_overflow[1:0]
+digital_timer_tb.u_dut.min_digit_overflow[1:0]
+digital_timer_tb.u_dut.hour_digit_overflow[1:0]
 [pattern_trace] 1
 [pattern_trace] 0
