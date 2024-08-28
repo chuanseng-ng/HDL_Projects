@@ -57,7 +57,7 @@
 - 20240828 - Fix TB & RTL for compile & function
 
 ## To-Do:
-- (Resolved) Fix design to increment minutes and hours correctly
+- Fix design to increment minutes and hours correctly
 - (Resolved) timer_clear not working properly -- timer_clk not reset to low if already high
 - (Resolved) timer_pause not working properly -- timer_clk still toggling during timer_pause assertion
   - Edge-case where timer_clk_count == 'd9, cause digital_clock_in to continue toggling
