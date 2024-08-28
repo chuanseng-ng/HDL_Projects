@@ -42,6 +42,8 @@ module digital_timer #() (
     timer_clk_gen #() u_timer_clk_gen (
         .sys_clk         (sys_clk),
         .int_reset_b     (int_reset_b),
+        .timer_clear     (timer_clear),
+        .timer_pause     (timer_pause),
         .timer_clk_count (timer_clk_count),
         .timer_clk       (timer_clk)
     );
