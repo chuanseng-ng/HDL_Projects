@@ -22,17 +22,17 @@ module digit_iter #(
             overflow_ind <= 0;
         end else begin
             if (SEC_DIGIT || MIN_DIGIT) begin
-                if (FIRST_DIGIT && clock_digit_in == 'd9) begin
+                if (FIRST_DIGIT && clock_digit_in == 7'b0010100) begin
                     overflow_ind <= 1;
-                end else if (SECOND_DIGIT && clock_digit_in == 'd5) begin
+                end else if (SECOND_DIGIT && clock_digit_in == 7'b0110100) begin
                     overflow_ind <= 1;
                 end else begin
                     overflow_ind <= 0;
                 end
             end else if (HR_DIGIT) begin
-                if (FIRST_DIGIT && clock_digit_in == 'd9) begin
+                if (FIRST_DIGIT && clock_digit_in == 7'b0010100) begin
                     overflow_ind <= 1;
-                end else if (SECOND_DIGIT && clock_digit_in == 'd2) begin
+                end else if (SECOND_DIGIT && clock_digit_in == 7'b0010010) begin
                     overflow_ind <= 1;
                 end else begin
                     overflow_ind <= 0;
