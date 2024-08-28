@@ -71,7 +71,7 @@ module digital_timer #() (
                         .int_reset_b       (int_reset_b),
                         .clock_digit_in    (digital_clock_in[iter]),
                         .clock_digit_out   (digital_clock_out[iter]),
-                        .prev_overflow_ind (1'b1),
+                        .prev_overflow_ind (5'b11111),
                         .overflow_ind      (sec_digit_overflow[0])
                     );
                 1: digit_iter #(
@@ -85,7 +85,7 @@ module digital_timer #() (
                         .int_reset_b       (int_reset_b),
                         .clock_digit_in    (digital_clock_in[iter]),
                         .clock_digit_out   (digital_clock_out[iter]),
-                        .prev_overflow_ind (sec_digit_overflow[0]),
+                        .prev_overflow_ind ({sec_digit_overflow[0], 4'b1111}),
                         .overflow_ind      (sec_digit_overflow[1])
                     );
                 2: digit_iter #(
@@ -99,7 +99,7 @@ module digital_timer #() (
                         .int_reset_b       (int_reset_b),
                         .clock_digit_in    (digital_clock_in[iter]),
                         .clock_digit_out   (digital_clock_out[iter]),
-                        .prev_overflow_ind (sec_digit_overflow[1]),
+                        .prev_overflow_ind ({sec_digit_overflow, 3'b111}),
                         .overflow_ind      (min_digit_overflow[0])
                     );
                 3: digit_iter #(
@@ -113,7 +113,7 @@ module digital_timer #() (
                         .int_reset_b       (int_reset_b),
                         .clock_digit_in    (digital_clock_in[iter]),
                         .clock_digit_out   (digital_clock_out[iter]),
-                        .prev_overflow_ind (min_digit_overflow[0]),
+                        .prev_overflow_ind ({min_digit_overflow[0], sec_digit_overflow, 2'b11}),
                         .overflow_ind      (min_digit_overflow[1])
                     );
                 4: digit_iter #(
@@ -127,7 +127,7 @@ module digital_timer #() (
                         .int_reset_b       (int_reset_b),
                         .clock_digit_in    (digital_clock_in[iter]),
                         .clock_digit_out   (digital_clock_out[iter]),
-                        .prev_overflow_ind (min_digit_overflow[1]),
+                        .prev_overflow_ind ({min_digit_overflow, sec_digit_overflow, 1'b1}),
                         .overflow_ind      (hour_digit_overflow[0])
                     );
                 5: digit_iter #(
@@ -141,7 +141,7 @@ module digital_timer #() (
                         .int_reset_b       (int_reset_b),
                         .clock_digit_in    (digital_clock_in[iter]),
                         .clock_digit_out   (digital_clock_out[iter]),
-                        .prev_overflow_ind (hour_digit_overflow[0]),
+                        .prev_overflow_ind ({hour_digit_overflow[0], min_digit_overflow, sec_digit_overflow}),
                         .overflow_ind      (hour_digit_overflow[1])
                     );
             endcase
