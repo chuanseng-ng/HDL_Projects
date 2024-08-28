@@ -69,7 +69,25 @@ module digital_timer_tb#()();
 
     task static operation_process;
         begin
-            forever #`DELAY $display("%d", digital_clock);
+            // Set timer_pause and release to test timer pause function
+            #(`DELAY*25)
+            timer_pause = 1'b1;
+            #(`DELAY*10)
+            timer_pause = 1'b0;
+
+            // Set timer_clear and release to test timer clear function
+            #(`DELAY*38)
+            timer_clear = 1'b1;
+            #(`DELAY*5)
+            timer_clear = 1'b0;
+
+            // Set timer_reset and release to test timer reset function
+            #(`DELAY*50)
+            timer_reset = 1'b1;
+            #(`DELAY*6)
+            timer_reset = 1'b0;
+
+            //forever #`DELAY $display("%d", digital_clock);
         end
     endtask
 
