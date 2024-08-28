@@ -45,14 +45,20 @@
 <li> Refer to 7-Segment Decoder Truth Table snapshot in reference directory </li>
 
 ## Status:
+- 20240828 - Add timer_pause, timer_clear & timer_reset into TB and fix timer_pause & timer_clear bugs
 - 20240828 - Fix bugs and resolve compile issue
 - 20240828 - Init DB
 
 ## Changelist:
+- 20240828 - Fix timer_pause not working as intended issue
+- 20240828 - Fix timer_clear not working as intended issue
 - 20240828 - Fix TB & RTL for compile & function
 
 ## To-Do:
 - Fix design to increment minutes and hours correctly
+- (Resolved) timer_clear not working properly -- timer_clk not reset to low if already high
+- (Resolved) timer_pause not working properly -- timer_clk still toggling during timer_pause assertion
+  - Edge-case where timer_clk_count == 'd9, cause digital_clock_in to continue toggling
 
 ## Reference:
 - 
