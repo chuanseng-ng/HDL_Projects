@@ -8,7 +8,7 @@ module digit_iter #(
     input timer_clk,
     input int_reset_b,
 
-    input prev_overflow_ind,
+    input [4:0] prev_overflow_ind,
 
     input [6:0] clock_digit_in,
 
@@ -16,6 +16,7 @@ module digit_iter #(
 
     output reg overflow_ind
 );
+    wire prev_overflow_ind_merge = & prev_overflow_ind;
 
     always @(posedge timer_clk or negedge int_reset_b) begin
         if (~int_reset_b) begin
@@ -47,7 +48,7 @@ module digit_iter #(
         if (~int_reset_b) begin
             clock_digit_out <= 7'b0000001; // 0
         end else begin
-            if (prev_overflow_ind) begin
+            if (prev_overflow_ind_merge) begin
                 case(clock_digit_in)
                     7'b0000001: clock_digit_out <= 7'b1001111; // 0 -> 1
                     7'b1001111: clock_digit_out <= 7'b0010010; // 1 -> 2
