@@ -45,13 +45,14 @@
 <li> Refer to 7-Segment Decoder Truth Table snapshot in reference directory </li>
 
 ## Status:
+- 20240828 - Fix bugs and resolve compile issue
 - 20240828 - Init DB
 
 ## Changelist:
-- 
+- 20240828 - Fix TB & RTL for compile & function
 
 ## To-Do:
-- 
+- Fix design to increment minutes and hours correctly
 
 ## Reference:
 - 
