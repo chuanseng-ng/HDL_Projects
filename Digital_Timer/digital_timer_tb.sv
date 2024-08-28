@@ -4,7 +4,7 @@
 
 module digital_timer_tb#()();
 
-    parameter int ENDTIME = 2000;
+    parameter int ENDTIME = 200000;
 
     reg clk;
     reg rst_b;

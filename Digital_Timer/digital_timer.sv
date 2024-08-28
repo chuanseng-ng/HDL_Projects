@@ -7,7 +7,7 @@ module digital_timer #() (
     input timer_pause,
     input timer_reset,
 
-    output [5:0] [6:0] digital_clock_out
+    output reg [5:0] [6:0] digital_clock_out
 );
 
     reg digital_sec_2nd_ind;
@@ -46,17 +46,17 @@ module digital_timer #() (
         .timer_clk       (timer_clk)
     );
 
-    always @(negedge int_reset_b) begin
+    always @(posedge sys_clk or negedge int_reset_b) begin
         if (~int_reset_b) begin
             digital_clock_in <= {(6){7'b0000001}}; // Reset to 0
+        end else begin
+            digital_clock_in <= digital_clock_out;
         end
     end
 
     generate
         genvar iter;
         for (iter = 0; iter < 6; iter++) begin: gen_digital_display_iter
-            assign digital_clock_out[iter] = digital_clock_in[iter];
-
             case(iter)
                 0: digit_iter #(
                         .HR_DIGIT     (0),
@@ -67,7 +67,6 @@ module digital_timer #() (
                 ) u_sec_first_digit_iter (
                         .timer_clk         (timer_clk),
                         .int_reset_b       (int_reset_b),
-                        .timer_clk_count   (timer_clk_count),
                         .clock_digit_in    (digital_clock_in[iter]),
                         .clock_digit_out   (digital_clock_out[iter]),
                         .prev_overflow_ind (1'b1),
@@ -82,7 +81,6 @@ module digital_timer #() (
                 ) u_sec_second_digit_iter (
                         .timer_clk         (timer_clk),
                         .int_reset_b       (int_reset_b),
-                        .timer_clk_count   (timer_clk_count),
                         .clock_digit_in    (digital_clock_in[iter]),
                         .clock_digit_out   (digital_clock_out[iter]),
                         .prev_overflow_ind (sec_digit_overflow[0]),
@@ -97,7 +95,6 @@ module digital_timer #() (
                 ) u_min_first_digit_iter (
                         .timer_clk         (timer_clk),
                         .int_reset_b       (int_reset_b),
-                        .timer_clk_count   (timer_clk_count),
                         .clock_digit_in    (digital_clock_in[iter]),
                         .clock_digit_out   (digital_clock_out[iter]),
                         .prev_overflow_ind (sec_digit_overflow[1]),
@@ -112,7 +109,6 @@ module digital_timer #() (
                 ) u_min_second_digit_iter (
                         .timer_clk         (timer_clk),
                         .int_reset_b       (int_reset_b),
-                        .timer_clk_count   (timer_clk_count),
                         .clock_digit_in    (digital_clock_in[iter]),
                         .clock_digit_out   (digital_clock_out[iter]),
                         .prev_overflow_ind (min_digit_overflow[0]),
@@ -127,7 +123,6 @@ module digital_timer #() (
                 ) u_hr_first_digit_iter (
                         .timer_clk         (timer_clk),
                         .int_reset_b       (int_reset_b),
-                        .timer_clk_count   (timer_clk_count),
                         .clock_digit_in    (digital_clock_in[iter]),
                         .clock_digit_out   (digital_clock_out[iter]),
                         .prev_overflow_ind (min_digit_overflow[1]),
@@ -142,7 +137,6 @@ module digital_timer #() (
                 ) u_hr_second_digit_iter (
                         .timer_clk         (timer_clk),
                         .int_reset_b       (int_reset_b),
-                        .timer_clk_count   (timer_clk_count),
                         .clock_digit_in    (digital_clock_in[iter]),
                         .clock_digit_out   (digital_clock_out[iter]),
                         .prev_overflow_ind (hour_digit_overflow[0]),
