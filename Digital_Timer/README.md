@@ -45,12 +45,14 @@
 <li> Refer to 7-Segment Decoder Truth Table snapshot in reference directory </li>
 
 ## Status:
+- 20240829 - Re-fix minute/hour increment issue + Use parameter for timer counter
 - 20240828 - Fix minutes & hours increment unexpectedly issue
 - 20240828 - Add timer_pause, timer_clear & timer_reset into TB and fix timer_pause & timer_clear bugs
 - 20240828 - Fix bugs and resolve compile issue
 - 20240828 - Init DB
 
 ## Changelist:
+- 20240829 - Re-fix previous issue on increment + Use timer counter parameter
 - 20240828 - Fix minutes & hours increment issue
 - 20240828 - Fix timer_pause not working as intended issue
 - 20240828 - Fix timer_clear not working as intended issue
