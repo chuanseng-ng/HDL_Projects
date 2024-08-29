@@ -4,7 +4,8 @@
 
 module digital_timer_tb#()();
 
-    parameter int ENDTIME = 200000;
+    parameter int ENDTIME    = 200000;
+    parameter int TIMER_LIMIT = 4;
 
     reg clk;
     reg rst_b;
@@ -15,7 +16,9 @@ module digital_timer_tb#()();
 
     reg [5:0] [6:0] digital_clock;
 
-    digital_timer #() u_dut (
+    digital_timer #(
+        .TIMER_LIMIT (TIMER_LIMIT)
+    ) u_dut (
         .sys_clk           (clk),
         .rst_b             (rst_b),
         .timer_clear       (timer_clear),

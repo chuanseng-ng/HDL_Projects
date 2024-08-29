@@ -1,5 +1,7 @@
 // Clock divider by 10
-module timer_clk_gen #() (
+module timer_clk_gen #(
+    parameter int TIMER_LIMIT = 10
+) (
     input sys_clk,
     input int_reset_b,
 
@@ -19,7 +21,7 @@ module timer_clk_gen #() (
                 timer_clk <= 1'b0;
             end else if (timer_pause) begin
                 timer_clk <= timer_clk;
-            end else if (timer_clk_count == 'd9) begin
+            end else if (timer_clk_count == TIMER_LIMIT-1) begin
                 timer_clk <= ~timer_clk;
             end else begin
                 timer_clk <= timer_clk;
