@@ -5,7 +5,7 @@
 
 ## Status:
 - 20240828 -> [Digital Timer](/Digital_Timer/README.md)
-    - RTL Done + Compile Ok (Pending bug fix)
+    - RTL Done + Verified Ok 
 - 20240822 -> [RISC Processor](/RISC_processor/README.md)
     - RTL Done + Compile Ok (More function check needed - Improve TB)
 - 20240810 -> [FIFO Memory](/FIFO_Mem/README.md)
