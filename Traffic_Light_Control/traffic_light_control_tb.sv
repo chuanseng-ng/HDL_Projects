@@ -10,7 +10,9 @@ module traffic_light_control_tb #() ();
     reg input_a, input_b;
     reg output_x, output_y, output_z;
 
-    traffic_light_control #() u_dut (
+    traffic_light_control #(
+        .TIMER_LIMIT (5)
+    ) u_dut (
         .clk      (clk),
         .rstb     (rstb),
         .input_a  (input_a),
