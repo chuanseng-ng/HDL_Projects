@@ -108,12 +108,12 @@ module fifo_mem_tb #()();
 
     task static debug_fifo;
         begin
-            $display("----------------------------------------------");  
-            $display("------------------   -----------------------");  
-            $display("----------- SIMULATION RESULT ----------------");  
-            $display("--------------       -------------------");  
-            $display("----------------     ---------------------");  
-            $display("----------------------------------------------");  
+            $display("----------------------------------------------");
+            $display("------------------   -----------------------");
+            $display("----------- SIMULATION RESULT ----------------");
+            $display("--------------       -------------------");
+            $display("----------------     ---------------------");
+            $display("----------------------------------------------");
             $monitor("TIME = %d, wr = %b, rd = %b, data_in = %h", $time, trans_write, trans_read, data_in);
         end
     endtask
@@ -147,8 +147,8 @@ module fifo_mem_tb #()();
                         $finish;
                     end
                 end else begin
-                    $display ("=== FAIL ==== FAIL ==== FAIL ==== FAIL ===");  
-                    $display("-------------- THE SIMUALTION FINISHED ------------");  
+                    $display ("=== FAIL ==== FAIL ==== FAIL ==== FAIL ===");
+                    $display("-------------- THE SIMUALTION FINISHED ------------");
                     $finish;
                 end
             end
@@ -158,7 +158,7 @@ module fifo_mem_tb #()();
     task static endsimulation;
         begin
             #ENDTIME
-            $display("-------------- THE SIMUALTION FINISHED ------------");  
+            $display("-------------- THE SIMUALTION FINISHED ------------");
             $finish;
         end
     endtask
