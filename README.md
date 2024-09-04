@@ -33,6 +33,8 @@
 
 ## Reference:
 - https://www.fpga4student.com/p/verilog-project.html
+- https://www.reddit.com/r/FPGA/comments/hyn120/running_uvm_testbench_in_xilinx_vivado
+- https://www.chipverify.com/tutorials/uvm
 
 ## Note:
 - VCD dump path is C:/Users/{user_name}/.teroshdl/build
