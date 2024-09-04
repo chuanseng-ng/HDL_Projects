@@ -2,24 +2,19 @@
 `timescale 10ns/10ns
 
 `define DELAY 10
-`define ENDTIME 20000
 
 module traffic_light_control_tb #() ();
 
+    localparam int ENDTIME     = 20000;
+    localparam int TIMER_LIMIT = 5;
+
     reg clk, rstb;
-    reg input_a, input_b;
-    reg output_x, output_y, output_z;
 
     traffic_light_control #(
-        .TIMER_LIMIT (5)
+        .TIMER_LIMIT (TIMER_LIMIT)
     ) u_dut (
-        .clk      (clk),
-        .rstb     (rstb),
-        .input_a  (input_a),
-        .input_b  (input_b),
-        .output_x (output_x),
-        .output_y (output_y),
-        .output_z (output_z)
+        .clk     (clk),
+        .rstb    (rstb)
     );
 
     initial begin: initial_block
@@ -30,8 +25,6 @@ module traffic_light_control_tb #() ();
 
         clk     <= 1'b0;
         rstb    <= 1'b0;
-        input_a <= 1'b0;
-        input_b <= 1'b0;
     end
 
     initial begin
@@ -56,11 +49,11 @@ module traffic_light_control_tb #() ();
     task static reset_gen;
         begin
             #(`DELAY*2)
-            rst_b = 1'b1;
+            rstb = 1'b1;
             # 20
-            rst_b = 1'b0;
+            rstb = 1'b0;
             # 25
-            rst_b = 1'b1;
+            rstb = 1'b1;
         end
     endtask
 
