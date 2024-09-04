@@ -1,0 +1,12 @@
+*
+!*/
+!vcd
+!doc
+!.gitignore
+!*.md
+!*/*.pdf
+!*.sv
+!logw.tcl
+!README.md
+!Makefile
+!README_template
