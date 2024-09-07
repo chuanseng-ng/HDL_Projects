@@ -46,10 +46,10 @@
     fifo_mem_seq_item_h = fifo_mem_seq_item::type_id::create("fifo_mem_seq_item_h");
     forever begin
       @(posedge vintf.clk);
-      fifo_mem_seq_item_h.we     = vintf.we;
-      fifo_mem_seq_item_h.addr   = vintf.addr;
-      fifo_mem_seq_item_h.wdata  = vintf.wdata;
-      fifo_mem_seq_item_h.rdata  = vintf.rdata;
+      fifo_mem_seq_item_h.trans_read  = vintf.trans_read;
+      fifo_mem_seq_item_h.trans_write = vintf.trans_write;
+      fifo_mem_seq_item_h.data_in     = vintf.data_in;
+      fifo_mem_seq_item_h.data_out = vintf.data_out;
       mon_port.write(fifo_mem_seq_item_h);
       `uvm_info(get_full_name(), "[FIFO_MEM] Written Sequence Item from Monitor", UVM_LOW)
     end
