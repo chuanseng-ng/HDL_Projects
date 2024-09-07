@@ -1,0 +1,5 @@
+# SV source files
+../rtl/fifo_mem.sv
+../rtl/memory_array.sv
+../rtl/monitor_signal.sv
+../rtl/rd_wr_ptr.sv

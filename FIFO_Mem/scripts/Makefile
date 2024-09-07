@@ -3,7 +3,7 @@
 
 work = work
 
-top_tb_name = fifo_mem_tb
+top_tb_name = fifo_mem_tb_uvm
 
 ifeq ($(OS),Windows_NT)
 
@@ -16,7 +16,7 @@ endif
 ifneq ("$(wildcard ../rtl/*.sv)","")
 RTL = ../rtl/fifo_mem.sv
 else
-RTL =
+RTL = "-f ../sim/filelist"
 endif
 
 ifneq ("$(wildcard ../sim/tb)","")
@@ -26,7 +26,7 @@ INCTB =
 endif
 
 ifneq ("$(wildcard ../sim/tb/*.sv)","")
-TB = ../sim/tb/fifo_mem_tb.sv
+TB = ../sim/tb/fifo_mem_tb_uvm.sv
 else
 TB =
 endif
@@ -204,24 +204,29 @@ endif
 endif
 
 ifeq ($(OS),Windows_NT)
-DELFILES = clean_dos
+	ifeq ($(SHELL),sh.exe)
+		DELFILES := clean_dos
+	else
+		DELFILES := clean_linux
+	endif
 else
-DELFILES = clean_linux
+	DELFILES := clean_linux
 endif
 
+# 	xvlog -work $(work) -i ../sim -sv $(RTL) $(SEQ_LIB) $(REG) $(INTF) $(AGT) $(ENV) $(TESTS) $(TB) -L uvm
 cmp:
-	xvlog -work $(work) -i ../sim -sv $(RTL) $(SEQ_LIB) $(REG) $(INTF) $(AGT) $(ENV) $(TESTS) $(TB) -L uvm
+	xvlog -work $(work) -i ../sim -sv -f ../sim/filelist $(SEQ_LIB) $(REG) $(INTF) $(AGT) $(ENV) $(TESTS) $(TB) -L uvm
 	xelab work.$(top_tb_name) -s $(top_tb_name)_sim -L uvm -timescale 1ns/1ps -debug all
 
 run_sim_wave:
-	xsim -wdb sim.wdb -log session.log -t logw.tcl $(top_tb_name)_sim -testplusarg "UVM_TESTNAME=fifo_mem_sanity_test"
+	xsim -wdb sim.wdb -log session.log -t logw.tcl $(top_tb_name)_sim --testplusarg "{ UVM_TESTNAME=fifo_mem_sanity_test }"
 	xsim sim.wdb -gui
 
 view_wave:
 	xsim sim.wdb -gui
 
 run_sim:
-	xsim -runall -log session.log $(top_tb_name)_sim -testplusarg "UVM_TESTNAME=fifo_mem_sanity_test"
+	xsim -runall -log session.log $(top_tb_name)_sim -testplusarg "{ UVM_TESTNAME=fifo_mem_sanity_test }"
 
 clean_linux:
 	rm -rf modelsim.* transcript* vlog.* work vsim.wlf *.log *hbs *Xil xsim.dir *.jou *.pb
@@ -256,3 +261,7 @@ run_all_gui:
 	make clean
 	make cmp
 	make run_sim_wave
+
+run_all_dirty:
+	make cmp
+	make run_sim
