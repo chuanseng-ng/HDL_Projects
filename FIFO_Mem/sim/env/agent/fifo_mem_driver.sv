@@ -32,18 +32,35 @@
   task fifo_mem_driver::drive_task(fifo_mem_seq_item seq_item);
     `uvm_info(get_full_name(), "[FIFO_MEM] Received Sequence Item in Driver", UVM_LOW)
     @(negedge vintf.clk);
-    vintf.we <= seq_item.we;
-    vintf.addr <= seq_item.addr;
-    vintf.wdata <= seq_item.wdata;
+    // Inputs
+    //vintf.areset_b      <= seq_item.areset_b;
+    vintf.trans_read    <= seq_item.trans_read;
+    vintf.trans_write   <= seq_item.trans_write;
+    vintf.data_in       <= seq_item.data_in;
+    // Outputs
+    vintf.data_out      <= seq_item.data_out;
+    vintf.full_ind      <= seq_item.full_ind;
+    vintf.empty_ind     <= seq_item.empty_ind;
+    vintf.overflow_ind  <= seq_item.overflow_ind;
+    vintf.underflow_ind <= seq_item.underflow_ind;
+    vintf.threshold_ind <= seq_item.threshold_ind;
   endtask
 
   task fifo_mem_driver::reset_phase(uvm_phase phase);
     super.reset_phase(phase);
     phase.raise_objection(this);
     `uvm_info(get_full_name(), "[FIFO_MEM] Resetting DUT from Driver", UVM_NONE)
-    vintf.we     <= 'd0;
-    vintf.addr   <= 'd0;
-    vintf.wdata  <= 'd0;
+    //vintf.clk_in        <= 'b0;
+    //vintf.areset_b      <= 'b1;
+    vintf.trans_read    <= 'b0;
+    vintf.trans_write   <= 'b0;
+    vintf.data_in       <= 'd0;
+    vintf.data_out      <= 'd0;
+    vintf.full_ind      <= 'b0;
+    vintf.empty_ind     <= 'b0;
+    vintf.overflow_ind  <= 'b0;
+    vintf.underflow_ind <= 'b0;
+    vintf.threshold_ind <= 'b0;
     @(posedge vintf.clk);
     phase.drop_objection(this);
   endtask

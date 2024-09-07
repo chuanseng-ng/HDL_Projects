@@ -22,7 +22,7 @@
     super.body();
     `uvm_info(get_full_name(), "[FIFO_MEM] Starting Sanity Sequence", UVM_LOW)
     repeat(17) begin
-      `uvm_do_with(req, {we==1;})
+      `uvm_do_with(req, {trans_write==1;})
     end
     // wait_for_item_done();
   endtask

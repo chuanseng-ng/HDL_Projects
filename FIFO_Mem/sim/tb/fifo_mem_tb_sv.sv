@@ -6,7 +6,7 @@
 
 `define DELAY 10
 
-module fifo_mem_tb #()();
+module fifo_mem_tb_sv #()();
 
     parameter int ENDTIME    = 2000;
     parameter int DATA_WIDTH = 16;
@@ -55,8 +55,8 @@ module fifo_mem_tb #()();
     end
 
     initial begin
-        //$dumpfile("SystolicArray2x2.vcd");
-        //$dumpvars();
+        $dumpfile("fifo_mem.vcd");
+        $dumpvars();
         main;
     end
 

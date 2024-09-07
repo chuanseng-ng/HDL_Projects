@@ -1,13 +1,21 @@
 `ifndef FIFO_MEM_INTF__SV
 `define FIFO_MEM_INTF__SV
 
-  interface fifo_mem_intf(input clk);
+  interface fifo_mem_intf(
+    input clk,
+    input areset_b
+    );
 
     // Signals
-    logic we;
-    logic [3:0] addr;
-    logic [7:0] wdata;
-    logic [7:0] rdata;
+    logic trans_read;
+    logic trans_write;
+    logic [31:0] data_in;
+    logic [31:0] data_out;
+    logic full_ind;
+    logic empty_ind;
+    logic overflow_ind;
+    logic underflow_ind;
+    logic threshold_ind;
 
   endinterface
 

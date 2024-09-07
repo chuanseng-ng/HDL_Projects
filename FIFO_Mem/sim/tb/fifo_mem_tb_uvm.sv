@@ -6,35 +6,83 @@
   `timescale 1ns/1ps
   `include "uvm_macros.svh"
 
-  module fifo_mem_tb;
-    import fifo_mem_test_pkg::*;
-    import uvm_pkg::*;
+  module fifo_mem_tb_uvm;
+  import fifo_mem_test_pkg::*;
+  import uvm_pkg::*;
 
-    logic clk;
+  logic clk;
+  logic areset_b;
 
-    fifo_mem_intf intf(.clk(clk));
+  fifo_mem #(
+    .DATA_WIDTH      (32),
+    .OSTD_NUM        (4),
+    .THRESHOLD_VALUE (2)
+  ) u_tb (
+    .clk_in        (clk),
+    .areset_b      (areset_b),
+    .trans_read    (vif.trans_read),
+    .trans_write   (vif.trans_write),
+    .data_in       (vif.data_in),
+    .data_out      (vif.data_out),
+    .full_ind      (vif.full_ind),
+    .empty_ind     (vif.empty_ind),
+    .overflow_ind  (vif.overflow_ind),
+    .underflow_ind (vif.underflow_ind),
+    .threshold_ind (vif.threshold_ind)
+  );
 
-    fifo_mem DUT (
-      .clk(clk),
-      .we(intf.we),
-      .addr(intf.addr),
-      .wdata(intf.wdata),
-      .rdata(intf.rdata)
+  fifo_mem_intf vif(
+    .clk      (clk),
+    .areset_b (areset_b)
     );
 
-    initial begin
-      clk = 0;
-      forever begin
-        #10 clk = ~clk;
-      end
-    end
+  // From auto-gen
+  //fifo_mem DUT (
+  //  .clk(clk),
+  //  .we(intf.we),
+  //  .addr(intf.addr),
+  //  .wdata(intf.wdata),
+  //  .rdata(intf.rdata)
+  //);
 
-    initial begin
-      uvm_config_db #(virtual fifo_mem_intf)::set(null, "*", "vintf", intf);
-      run_test();
+  initial begin
+    $dumpfile("fifo_mem_uvm.vcd");
+    $dumpvars();
+    main;
+  end
+
+  task static main;
+    fork
+      clock_gen;
+      reset_gen;
+    join
+  endtask
+
+  task static clock_gen;
+    clk = 0;
+    forever begin
+      #10 clk = ~clk;
     end
+  endtask
+
+  task static reset_gen;
+    begin
+      #2
+      areset_b = 1'b1;
+      #2
+      areset_b = 1'b0;
+      #4
+      areset_b = 1'b1;
+    end
+  endtask
+
+  initial begin
+    uvm_config_db #(virtual fifo_mem_intf)::set(null, "*", "vintf", vif);
+    run_test();
+    //uvm_root #(.run_test("fifo_gpt_test")) run_test();
+  end
   endmodule
 
 `endif
 
-//End of fifo_mem_tb
+// End of fifo_mem_tb
