@@ -11,7 +11,9 @@
     `include "uvm_macros.svh"
 
     // Import UVM
-    `include "fifo_mem_sb.sv"
+    // Move fifo_mem_sb.sv to fifo_mem_env.sv
+    // fifo_mem_monitor.sv will call fifo_mem_sb
+    //`include "fifo_mem_sb.sv"
     `include "fifo_mem_cov.sv"
     `include "fifo_mem_env.sv"
   endpackage

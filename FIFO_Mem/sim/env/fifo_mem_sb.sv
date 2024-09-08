@@ -2,6 +2,8 @@
 `define FIFO_MEM_SB__SV
 
   class fifo_mem_sb extends uvm_scoreboard;
+    protected bit [31:0] read_data_queue[$];
+    protected bit [31:0] write_data_queue[$];
 
     // Factory Registration
     `uvm_component_utils(fifo_mem_sb)
@@ -11,6 +13,35 @@
 
     // Data Item
     fifo_mem_seq_item seq_item;
+
+    virtual function void write_trans(bit write_en, bit areset_b, bit [31:0] data);
+      if (~areset_b) begin
+        write_data_queue.delete();
+        `uvm_info(get_full_name(), ("[SCOREBOARD] Reset triggered - Write data queue will be resetted!"), UVM_MEDIUM)
+      end else if (write_en) begin
+        write_data_queue.push_back(data);
+        `uvm_info(get_full_name(), $sformatf("[SCOREBOARD] Data written to scoreboard: 0x%0h", data), UVM_MEDIUM)
+      end
+    endfunction
+
+    virtual function void read_trans_compare(bit read_en,  bit areset_b, bit [31:0] data);
+      if (~areset_b) begin
+        `uvm_info(get_full_name(), ("[SCOREBOARD] Reset triggered - Read will be skipped!"), UVM_MEDIUM)
+      end else if (read_en) begin
+        if (write_data_queue.size() == 0) begin
+          `uvm_error(get_full_name(), "[SCOREBOARD] No data in write queue to compare against")
+        end else begin
+          bit [31:0] expected_data = write_data_queue.pop_front();
+          `uvm_info(get_full_name(), $sformatf("[SCOREBOARD] Data to compare against: 0x%0h", data), UVM_LOW)
+
+          if (expected_data == data) begin
+            `uvm_info(get_full_name(), $sformatf("[SCOREBOARD] Data check match: 0x%0h", data), UVM_LOW)
+          end else begin
+            `uvm_error(get_full_name(), $sformatf("[SCOREBOARD] Data check mismatch! Expected: 0x%0h, Got: 0x%0h", expected_data, data))
+          end
+        end
+      end
+    endfunction
 
     // Tasks and Functions
     extern function new(string name = "fifo_mem_sb", uvm_component parent = null);

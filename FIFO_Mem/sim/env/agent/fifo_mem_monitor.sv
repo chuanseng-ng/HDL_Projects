@@ -8,12 +8,17 @@
 
     // Variables
     fifo_mem_seq_item fifo_mem_seq_item_h;
+    fifo_mem_sb fifo_mem_sb_h;
 
     // Interface
     virtual fifo_mem_intf vintf;
 
     // Analysis Port
     uvm_analysis_port #(fifo_mem_seq_item) mon_port;
+
+    function void connect_sb(fifo_mem_sb sb_ref);
+      fifo_mem_sb_h = sb_ref;
+    endfunction
 
     // Tasks and Functions
     extern function new(string name = "fifo_mem_monitor", uvm_component parent = null);
@@ -49,8 +54,14 @@
       fifo_mem_seq_item_h.trans_read  = vintf.trans_read;
       fifo_mem_seq_item_h.trans_write = vintf.trans_write;
       fifo_mem_seq_item_h.data_in     = vintf.data_in;
-      fifo_mem_seq_item_h.data_out = vintf.data_out;
+      fifo_mem_seq_item_h.data_out    = vintf.data_out;
       mon_port.write(fifo_mem_seq_item_h);
+      if (vintf.trans_write || ~vintf.areset_b) begin
+        fifo_mem_sb_h.write_trans(vintf.trans_write, vintf.areset_b, vintf.data_in);
+      end
+      if (vintf.trans_read || ~vintf.areset_b) begin
+        fifo_mem_sb_h.read_trans_compare(vintf.trans_read, vintf.areset_b, vintf.data_out);
+      end
       `uvm_info(get_full_name(), "[FIFO_MEM] Written Sequence Item from Monitor", UVM_LOW)
     end
   endtask

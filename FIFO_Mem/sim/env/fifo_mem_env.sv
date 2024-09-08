@@ -45,6 +45,7 @@
     `uvm_info(get_full_name(), "[FIFO_MEM] Starting Connect Phase", UVM_LOW)
     if(is_scoreboard_enable) begin
       agnth.monh.mon_port.connect(sbh.sb_fifo.analysis_export);
+      agnth.monh.connect_sb(sbh);
     end
     if(is_coverage_enable) begin
       agnth.monh.mon_port.connect(covh.analysis_export);

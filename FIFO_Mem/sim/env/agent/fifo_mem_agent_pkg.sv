@@ -13,6 +13,9 @@
     // `include "fifo_mem_intf.sv"
     `include "fifo_mem_agent_cfg.sv"
     `include "fifo_mem_driver.sv"
+    // Move fifo_mem_sb.sv from fifo_mem_env.sv
+    // fifo_mem_monitor.sv will call fifo_mem_sb
+    `include "../fifo_mem_sb.sv"
     `include "fifo_mem_monitor.sv"
     `include "fifo_mem_sequencer.sv"
     `include "fifo_mem_agent.sv"

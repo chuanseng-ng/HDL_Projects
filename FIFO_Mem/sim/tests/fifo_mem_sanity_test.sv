@@ -34,6 +34,7 @@
     `uvm_info(get_full_name(), "[fifo_mem] Starting sanity Test", UVM_NONE)
     seqh = fifo_mem_sanity_seq::type_id::create("seqh");
     seqh.start(envh.agnth.seqrh);
+    # 20ns;
     phase.drop_objection(this);
   endtask
 
