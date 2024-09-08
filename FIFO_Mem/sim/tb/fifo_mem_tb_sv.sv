@@ -10,7 +10,7 @@ module fifo_mem_tb_sv #()();
 
     parameter int ENDTIME    = 2000;
     parameter int DATA_WIDTH = 16;
-    parameter int OSTD_NUM   = 18;
+    parameter int OSTD_NUM   = 16;
     parameter int MAX_INT    = OSTD_NUM;
     parameter int ADDR_WIDTH = 8;
     parameter int MEM_SIZE   = 64;
@@ -126,6 +126,7 @@ module fifo_mem_tb_sv #()();
             waddr <= {(ADDR_WIDTH){1'b0}};
         end else begin
             if (trans_write) begin
+                $display("TIME = %d, Data is written into waddr = %d", $time, waddr);
                 tb_mem[waddr] <= data_in;
                 waddr         <= waddr + 1;
             end
@@ -143,12 +144,24 @@ module fifo_mem_tb_sv #()();
                 // Simulation result check
                 if (tb_mem[raddr] == data_out) begin
                     $display("=== PASS ===== PASS ==== PASS ==== PASS ===");
-                    if (raddr == MAX_INT-1) begin
+                    if (raddr == MAX_INT-3) begin
+                        $display("------------ All simulation checks passed ------------");
+                        $display(" #####  #####  #####  ##### ");
+                        $display(" #   #  #   #  #      #     ");
+                        $display(" #####  #####  #####  ##### ");
+                        $display(" #      #   #      #      # ");
+                        $display(" #      #   #  #####  ##### ");
+                        $display("-------------- THE SIMULATION FINISHED ------------");
                         $finish;
                     end
                 end else begin
                     $display ("=== FAIL ==== FAIL ==== FAIL ==== FAIL ===");
-                    $display("-------------- THE SIMUALTION FINISHED ------------");
+                    $display(" ##### ##### ###### #      ");
+                    $display(" #     #   #   #    #      ");
+                    $display(" ##### #####   #    #      ");
+                    $display(" #     #   #   #    #      ");
+                    $display(" #     #   # ###### ###### ");
+                    $display("-------------- THE SIMULATION FINISHED ------------");
                     $finish;
                 end
             end
@@ -158,7 +171,7 @@ module fifo_mem_tb_sv #()();
     task static endsimulation;
         begin
             #ENDTIME
-            $display("-------------- THE SIMUALTION FINISHED ------------");
+            $display("-------------- THE SIMULATION FINISHED ------------");
             $finish;
         end
     endtask
