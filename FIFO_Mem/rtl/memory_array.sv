@@ -16,7 +16,7 @@ module memory_array #(
 
     output [DATA_WIDTH-1:0] data_out //! Transaction data output (Read)
 );
-    reg [DATA_WIDTH-1:0] data_reg [OSTD_NUM-1:0]; //! Memory array
+    reg [DATA_WIDTH-1:0] [OSTD_NUM-1:0] data_reg; //! Memory array
 
     always @(posedge clk_in or negedge areset_b) begin: mem_array_storage
         if (~areset_b) begin
