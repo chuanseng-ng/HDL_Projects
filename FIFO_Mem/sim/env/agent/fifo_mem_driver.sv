@@ -31,7 +31,7 @@
 
   task fifo_mem_driver::drive_task(fifo_mem_seq_item seq_item);
     `uvm_info(get_full_name(), "[FIFO_MEM] Received Sequence Item in Driver", UVM_LOW)
-    @(negedge vintf.clk);
+    @(posedge vintf.clk);
     // Inputs
     //vintf.areset_b      <= seq_item.areset_b;
     vintf.trans_read    <= seq_item.trans_read;

@@ -16,8 +16,8 @@
 
   function void fifo_mem_cov::write(fifo_mem_seq_item t);
     `uvm_info(get_full_name(), "[FIFO_MEM] Received item in Subscriber", UVM_LOW)
-    `uvm_info(get_full_name(), $sformatf("\n[FIFO_MEM] Packet Data:\n\twe: %0d,\n\taddr: %0d,\n\twdata: %0d,\n\trdata: %0d",
-      t.we, t.addr, t.wdata, t.rdata), UVM_LOW)
+    `uvm_info(get_full_name(), $sformatf("\n[FIFO_MEM] Packet Data:\n\ttrans_write: %0d,\n\ttrans_read: %0d,\n\tdata_in: %0d,\n\tdata_out: %0d",
+      t.trans_write, t.trans_read, t.data_in, t.data_out), UVM_LOW)
   endfunction
 
 `endif

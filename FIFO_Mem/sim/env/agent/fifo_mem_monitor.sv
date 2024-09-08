@@ -16,7 +16,6 @@
     uvm_analysis_port #(fifo_mem_seq_item) mon_port;
 
     // Tasks and Functions
-
     extern function new(string name = "fifo_mem_monitor", uvm_component parent = null);
     extern virtual function void build_phase(uvm_phase phase);
     // extern virtual function void connect_phase(uvm_phase phase);
@@ -46,6 +45,7 @@
     fifo_mem_seq_item_h = fifo_mem_seq_item::type_id::create("fifo_mem_seq_item_h");
     forever begin
       @(posedge vintf.clk);
+      fifo_mem_seq_item_h.clk         = vintf.clk;
       fifo_mem_seq_item_h.trans_read  = vintf.trans_read;
       fifo_mem_seq_item_h.trans_write = vintf.trans_write;
       fifo_mem_seq_item_h.data_in     = vintf.data_in;

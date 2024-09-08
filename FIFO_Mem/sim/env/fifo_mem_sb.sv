@@ -30,9 +30,10 @@
   task fifo_mem_sb::run_phase(uvm_phase phase);
     forever begin
       sb_fifo.get(seq_item);
+      @(posedge seq_item.clk);
       `uvm_info(get_full_name(), "[FIFO_MEM] Received new item in SB", UVM_LOW)
-      `uvm_info(get_full_name(), $sformatf("\n[FIFO_MEM] Packet Data:\n\twe: %0d,\n\taddr: %0d,\n\twdata: %0d,\n\trdata: %0d",
-      seq_item.we, seq_item.addr, seq_item.wdata, seq_item.rdata), UVM_LOW)
+      `uvm_info(get_full_name(), $sformatf("\n[FIFO_MEM] Packet Data:\n\trans_write: %0d,\n\ttrans_read: %0d,\n\tdata_in: %0d,\n\tdata_out: %0d",
+      seq_item.trans_write, seq_item.trans_read, seq_item.data_in, seq_item.data_out), UVM_LOW)
     end
   endtask
 

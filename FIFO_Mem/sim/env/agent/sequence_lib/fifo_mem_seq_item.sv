@@ -11,6 +11,7 @@
     //randc logic [3:0] addr;
     //rand logic [7:0] wdata;
     //logic [7:0] rdata;
+    logic clk;
     logic areset_b;
     rand logic trans_read;
     rand logic trans_write;
