@@ -55,7 +55,7 @@ module fifo_mem_tb_sv #()();
     end
 
     initial begin
-        $dumpfile("fifo_mem.vcd");
+        $dumpfile("fifo_mem_sv.vcd");
         $dumpvars();
         main;
     end
@@ -82,7 +82,7 @@ module fifo_mem_tb_sv #()();
             rst_n = 1'b1;
             # 18
             rst_n = 1'b0;
-            # 20
+            # (`DELAY*2)
             rst_n = 1'b1;
         end
     endtask
