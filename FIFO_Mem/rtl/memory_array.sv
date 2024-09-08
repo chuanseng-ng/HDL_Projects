@@ -30,6 +30,14 @@ module memory_array #(
         end
     end
 
+    generate
+        genvar i;
+        for(i = 0; i < OSTD_NUM; i = i + 1) begin: gen_register_dump
+            wire [DATA_WIDTH-1:0] temp_data_reg;
+            assign temp_data_reg = data_reg[i];
+        end
+    endgenerate
+
     assign data_out = (fifo_renable) ? data_reg[read_ptr] : 'd0;
 
 endmodule
