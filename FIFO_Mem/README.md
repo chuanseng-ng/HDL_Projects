@@ -15,15 +15,23 @@
     - Threshold - High when number of data in FIFO is lesser than threshold value (Might be redundant)
 
 ## Status:
+- 20240908 - Fix UVM TB to match design spec & expectation
+- 20240904 - Add UVM TB
 - 20240807 - Debug TB not incrementing beyond addr = 4 (Fixed FIFO size & read/write pointer unable to increment)
 - 20240807 - V1 release
 - 20240807 - Init DB
 
 ## Changelist:
+- 20240908 - Modify UVM TB to match design expectation
+- 20240908 - Modify 2D memory_array to dump register values in waveform
+- 20240904 - Add UVM TB env files
 - 20240810 - Style-checker & Linter fix
 - 20240807 - Bug fix for FIFO size
 - 20240807 - Compile fix
 - 20240807 - V1 release
+
+## To-Do:
+- Modify UVM TB env to compare input vs output and evaluate pass/fail
 
 ## Reference:
 - https://www.fpga4student.com/2017/01/verilog-code-for-fifo-memory.html
