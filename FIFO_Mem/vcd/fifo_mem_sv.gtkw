@@ -1,19 +1,20 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Sun Sep 08 04:46:31 2024
+[*] Sun Sep 08 05:20:37 2024
 [*]
 [dumpfile] "c:\Users\waele\Documents\Github\HDL_Projects\FIFO_Mem\vcd\fifo_mem_sv.vcd"
-[dumpfile_mtime] "Sun Sep 08 04:42:20 2024"
-[dumpfile_size] 15147
+[dumpfile_mtime] "Sun Sep 08 05:18:25 2024"
+[dumpfile_size] 28190
 [savefile] "C:\Users\waele\Documents\Github\HDL_Projects\FIFO_Mem\vcd\fifo_mem_sv.gtkw"
-[timestart] 0
+[timestart] 8955
 [size] 3440 1369
-[pos] -139 -139
-*-10.103019 10900 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[pos] -243 -243
+*-8.103019 10900 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
 [treeopen] fifo_mem_tb_sv.
 [treeopen] fifo_mem_tb_sv.u_tb.
-[sst_width] 197
-[signals_width] 263
+[treeopen] fifo_mem_tb_sv.u_tb.u_mem_array.
+[sst_width] 289
+[signals_width] 606
 [sst_expanded] 1
 [sst_vpaned_height] 153
 @28
@@ -27,7 +28,11 @@ fifo_mem_tb_sv.u_tb.write_ptr[15:0]
 fifo_mem_tb_sv.u_tb.trans_read
 @22
 fifo_mem_tb_sv.u_tb.read_ptr[15:0]
-@23
 #{fifo_mem_tb_sv.u_tb.data_out[15:0]} fifo_mem_tb_sv.u_tb.data_out[15] fifo_mem_tb_sv.u_tb.data_out[14] fifo_mem_tb_sv.u_tb.data_out[13] fifo_mem_tb_sv.u_tb.data_out[12] fifo_mem_tb_sv.u_tb.data_out[11] fifo_mem_tb_sv.u_tb.data_out[10] fifo_mem_tb_sv.u_tb.data_out[9] fifo_mem_tb_sv.u_tb.data_out[8] fifo_mem_tb_sv.u_tb.data_out[7] fifo_mem_tb_sv.u_tb.data_out[6] fifo_mem_tb_sv.u_tb.data_out[5] fifo_mem_tb_sv.u_tb.data_out[4] fifo_mem_tb_sv.u_tb.data_out[3] fifo_mem_tb_sv.u_tb.data_out[2] fifo_mem_tb_sv.u_tb.data_out[1] fifo_mem_tb_sv.u_tb.data_out[0]
+#{fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[1].temp_data_reg[15:0]} fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[1].temp_data_reg[15] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[1].temp_data_reg[14] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[1].temp_data_reg[13] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[1].temp_data_reg[12] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[1].temp_data_reg[11] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[1].temp_data_reg[10] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[1].temp_data_reg[9] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[1].temp_data_reg[8] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[1].temp_data_reg[7] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[1].temp_data_reg[6] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[1].temp_data_reg[5] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[1].temp_data_reg[4] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[1].temp_data_reg[3] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[1].temp_data_reg[2] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[1].temp_data_reg[1] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[1].temp_data_reg[0]
+#{fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[2].temp_data_reg[15:0]} fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[2].temp_data_reg[15] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[2].temp_data_reg[14] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[2].temp_data_reg[13] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[2].temp_data_reg[12] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[2].temp_data_reg[11] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[2].temp_data_reg[10] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[2].temp_data_reg[9] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[2].temp_data_reg[8] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[2].temp_data_reg[7] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[2].temp_data_reg[6] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[2].temp_data_reg[5] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[2].temp_data_reg[4] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[2].temp_data_reg[3] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[2].temp_data_reg[2] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[2].temp_data_reg[1] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[2].temp_data_reg[0]
+#{fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[3].temp_data_reg[15:0]} fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[3].temp_data_reg[15] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[3].temp_data_reg[14] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[3].temp_data_reg[13] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[3].temp_data_reg[12] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[3].temp_data_reg[11] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[3].temp_data_reg[10] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[3].temp_data_reg[9] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[3].temp_data_reg[8] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[3].temp_data_reg[7] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[3].temp_data_reg[6] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[3].temp_data_reg[5] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[3].temp_data_reg[4] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[3].temp_data_reg[3] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[3].temp_data_reg[2] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[3].temp_data_reg[1] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[3].temp_data_reg[0]
+@23
+#{fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[4].temp_data_reg[15:0]} fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[4].temp_data_reg[15] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[4].temp_data_reg[14] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[4].temp_data_reg[13] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[4].temp_data_reg[12] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[4].temp_data_reg[11] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[4].temp_data_reg[10] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[4].temp_data_reg[9] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[4].temp_data_reg[8] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[4].temp_data_reg[7] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[4].temp_data_reg[6] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[4].temp_data_reg[5] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[4].temp_data_reg[4] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[4].temp_data_reg[3] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[4].temp_data_reg[2] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[4].temp_data_reg[1] fifo_mem_tb_sv.u_tb.u_mem_array.gen_register_dump[4].temp_data_reg[0]
 [pattern_trace] 1
 [pattern_trace] 0
