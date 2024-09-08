@@ -1,29 +1,33 @@
 [*]
 [*] GTKWave Analyzer v3.3.100 (w)1999-2019 BSI
-[*] Mon Aug 12 14:22:26 2024
+[*] Sun Sep 08 04:46:31 2024
 [*]
-[dumpfile] "C:\Users\waele\.teroshdl\build\fifo_mem.vcd"
-[dumpfile_mtime] "Mon Aug 12 14:18:53 2024"
-[dumpfile_size] 16567
-[savefile] "C:\Users\waele\.teroshdl\build\fifo_mem.gtkw"
+[dumpfile] "c:\Users\waele\Documents\Github\HDL_Projects\FIFO_Mem\vcd\fifo_mem_sv.vcd"
+[dumpfile_mtime] "Sun Sep 08 04:42:20 2024"
+[dumpfile_size] 15147
+[savefile] "C:\Users\waele\Documents\Github\HDL_Projects\FIFO_Mem\vcd\fifo_mem_sv.gtkw"
 [timestart] 0
-[size] 2829 600
-[pos] 381 336
-*-10.672927 18200 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
-[treeopen] fifo_mem_tb.
-[treeopen] fifo_mem_tb.u_tb.
+[size] 3440 1369
+[pos] -139 -139
+*-10.103019 10900 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] fifo_mem_tb_sv.
+[treeopen] fifo_mem_tb_sv.u_tb.
 [sst_width] 197
 [signals_width] 263
 [sst_expanded] 1
 [sst_vpaned_height] 153
 @28
-fifo_mem_tb.u_tb.clk_in
-@29
-fifo_mem_tb.u_tb.areset_b
+fifo_mem_tb_sv.u_tb.areset_b
+fifo_mem_tb_sv.u_tb.clk_in
+fifo_mem_tb_sv.u_tb.trans_write
 @22
-fifo_mem_tb.u_tb.write_ptr[17:0]
-#{fifo_mem_tb.u_tb.data_in[15:0]} fifo_mem_tb.u_tb.data_in[15] fifo_mem_tb.u_tb.data_in[14] fifo_mem_tb.u_tb.data_in[13] fifo_mem_tb.u_tb.data_in[12] fifo_mem_tb.u_tb.data_in[11] fifo_mem_tb.u_tb.data_in[10] fifo_mem_tb.u_tb.data_in[9] fifo_mem_tb.u_tb.data_in[8] fifo_mem_tb.u_tb.data_in[7] fifo_mem_tb.u_tb.data_in[6] fifo_mem_tb.u_tb.data_in[5] fifo_mem_tb.u_tb.data_in[4] fifo_mem_tb.u_tb.data_in[3] fifo_mem_tb.u_tb.data_in[2] fifo_mem_tb.u_tb.data_in[1] fifo_mem_tb.u_tb.data_in[0]
-#{fifo_mem_tb.u_tb.data_out[15:0]} fifo_mem_tb.u_tb.data_out[15] fifo_mem_tb.u_tb.data_out[14] fifo_mem_tb.u_tb.data_out[13] fifo_mem_tb.u_tb.data_out[12] fifo_mem_tb.u_tb.data_out[11] fifo_mem_tb.u_tb.data_out[10] fifo_mem_tb.u_tb.data_out[9] fifo_mem_tb.u_tb.data_out[8] fifo_mem_tb.u_tb.data_out[7] fifo_mem_tb.u_tb.data_out[6] fifo_mem_tb.u_tb.data_out[5] fifo_mem_tb.u_tb.data_out[4] fifo_mem_tb.u_tb.data_out[3] fifo_mem_tb.u_tb.data_out[2] fifo_mem_tb.u_tb.data_out[1] fifo_mem_tb.u_tb.data_out[0]
-fifo_mem_tb.u_tb.read_ptr[17:0]
+fifo_mem_tb_sv.u_tb.write_ptr[15:0]
+#{fifo_mem_tb_sv.u_tb.data_in[15:0]} fifo_mem_tb_sv.u_tb.data_in[15] fifo_mem_tb_sv.u_tb.data_in[14] fifo_mem_tb_sv.u_tb.data_in[13] fifo_mem_tb_sv.u_tb.data_in[12] fifo_mem_tb_sv.u_tb.data_in[11] fifo_mem_tb_sv.u_tb.data_in[10] fifo_mem_tb_sv.u_tb.data_in[9] fifo_mem_tb_sv.u_tb.data_in[8] fifo_mem_tb_sv.u_tb.data_in[7] fifo_mem_tb_sv.u_tb.data_in[6] fifo_mem_tb_sv.u_tb.data_in[5] fifo_mem_tb_sv.u_tb.data_in[4] fifo_mem_tb_sv.u_tb.data_in[3] fifo_mem_tb_sv.u_tb.data_in[2] fifo_mem_tb_sv.u_tb.data_in[1] fifo_mem_tb_sv.u_tb.data_in[0]
+@28
+fifo_mem_tb_sv.u_tb.trans_read
+@22
+fifo_mem_tb_sv.u_tb.read_ptr[15:0]
+@23
+#{fifo_mem_tb_sv.u_tb.data_out[15:0]} fifo_mem_tb_sv.u_tb.data_out[15] fifo_mem_tb_sv.u_tb.data_out[14] fifo_mem_tb_sv.u_tb.data_out[13] fifo_mem_tb_sv.u_tb.data_out[12] fifo_mem_tb_sv.u_tb.data_out[11] fifo_mem_tb_sv.u_tb.data_out[10] fifo_mem_tb_sv.u_tb.data_out[9] fifo_mem_tb_sv.u_tb.data_out[8] fifo_mem_tb_sv.u_tb.data_out[7] fifo_mem_tb_sv.u_tb.data_out[6] fifo_mem_tb_sv.u_tb.data_out[5] fifo_mem_tb_sv.u_tb.data_out[4] fifo_mem_tb_sv.u_tb.data_out[3] fifo_mem_tb_sv.u_tb.data_out[2] fifo_mem_tb_sv.u_tb.data_out[1] fifo_mem_tb_sv.u_tb.data_out[0]
 [pattern_trace] 1
 [pattern_trace] 0
