@@ -6,17 +6,27 @@
   `timescale 1ns/1ps
   `include "uvm_macros.svh"
 
+  `define DELAY 10
+
   module fifo_mem_tb_uvm;
   import fifo_mem_test_pkg::*;
   import uvm_pkg::*;
+
+    parameter int ENDTIME    = 2000;
+    parameter int DATA_WIDTH = 16;
+    parameter int OSTD_NUM   = 16;
+    //parameter int MAX_INT    = OSTD_NUM;
+    //parameter int ADDR_WIDTH = 8;
+    //parameter int MEM_SIZE   = 64;
+    //parameter int MAX_ADDR   = 32;
 
   logic clk;
   logic areset_b;
 
   fifo_mem #(
-    .DATA_WIDTH      (32),
-    .OSTD_NUM        (4),
-    .THRESHOLD_VALUE (2)
+    .DATA_WIDTH      (DATA_WIDTH),
+    .OSTD_NUM        (OSTD_NUM),
+    .THRESHOLD_VALUE (OSTD_NUM/2)
   ) u_tb (
     .clk_in        (clk),
     .areset_b      (areset_b),
@@ -31,7 +41,9 @@
     .threshold_ind (vif.threshold_ind)
   );
 
-  fifo_mem_intf vif(
+  fifo_mem_intf #(
+    .DATA_WIDTH (DATA_WIDTH)
+  ) vif(
     .clk      (clk),
     .areset_b (areset_b)
     );
@@ -44,6 +56,11 @@
   //  .wdata(intf.wdata),
   //  .rdata(intf.rdata)
   //);
+
+  initial begin
+    clk      = 1'b0;
+    areset_b = 1'b0;
+  end
 
   initial begin
     $dumpfile("fifo_mem_uvm.vcd");
@@ -59,19 +76,18 @@
   endtask
 
   task static clock_gen;
-    clk = 0;
-    forever begin
-      #10 clk = ~clk;
+    begin
+      forever #`DELAY clk = ~clk;
     end
   endtask
 
   task static reset_gen;
     begin
-      #2
+      #(`DELAY*2)
       areset_b = 1'b1;
-      #2
+      # 18
       areset_b = 1'b0;
-      #4
+      # (`DELAY*2)
       areset_b = 1'b1;
     end
   endtask
