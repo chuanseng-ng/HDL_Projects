@@ -24,12 +24,14 @@
       end
     endfunction
 
-    virtual function void read_trans_compare(bit read_en,  bit areset_b, bit [31:0] data);
+    virtual function void read_trans_compare(bit read_en, bit write_en, bit areset_b, bit [31:0] data);
       if (~areset_b) begin
         `uvm_info(get_full_name(), ("[SCOREBOARD] Reset triggered - Read will be skipped!"), UVM_MEDIUM)
       end else if (read_en) begin
         if (write_data_queue.size() == 0) begin
           `uvm_error(get_full_name(), "[SCOREBOARD] No data in write queue to compare against")
+        end else if (write_en && (write_data_queue.size() - 1 == 0)) begin
+          `uvm_info(get_full_name(), "[SCOREBOARD] Read will be skipped - Not support concurrent read-write when FIFO is empty", UVM_LOW)
         end else begin
           bit [31:0] expected_data = write_data_queue.pop_front();
           `uvm_info(get_full_name(), $sformatf("[SCOREBOARD] Data to compare against: 0x%0h", data), UVM_LOW)

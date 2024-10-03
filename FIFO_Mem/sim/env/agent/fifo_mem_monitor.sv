@@ -60,7 +60,7 @@
         fifo_mem_sb_h.write_trans(vintf.trans_write, vintf.areset_b, vintf.data_in);
       end
       if (vintf.trans_read || ~vintf.areset_b) begin
-        fifo_mem_sb_h.read_trans_compare(vintf.trans_read, vintf.areset_b, vintf.data_out);
+        fifo_mem_sb_h.read_trans_compare(vintf.trans_read, vintf.trans_write, vintf.areset_b, vintf.data_out);
       end
       `uvm_info(get_full_name(), "[FIFO_MEM] Written Sequence Item from Monitor", UVM_LOW)
     end
