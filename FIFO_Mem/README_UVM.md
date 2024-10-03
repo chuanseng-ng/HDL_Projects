@@ -5,6 +5,7 @@
 ```bash
 cd scripts
 make run_all
+make run_all_dirty
 ```
 #### With Waveform Dump
 ```bash
