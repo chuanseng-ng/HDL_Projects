@@ -63,6 +63,7 @@
   end
 
   initial begin
+    $display("Dumping VCD waveform file");
     $dumpfile("fifo_mem_uvm.vcd");
     $dumpvars();
     main;
