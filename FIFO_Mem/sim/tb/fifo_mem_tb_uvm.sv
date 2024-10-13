@@ -23,6 +23,8 @@
   logic clk;
   logic areset_b;
 
+  rd_wr_cycle_rand_gen trans_rand_gen;
+
   fifo_mem #(
     .DATA_WIDTH      (DATA_WIDTH),
     .OSTD_NUM        (OSTD_NUM),
@@ -45,8 +47,10 @@
     .DATA_WIDTH (DATA_WIDTH)
   ) vif(
     .clk      (clk),
-    .areset_b (areset_b)
-    );
+    .areset_b (areset_b),
+    .trans_read (trans_rand_gen.trans_read),
+    .trans_write (trans_rand_gen.trans_write)
+  );
 
   // From auto-gen
   //fifo_mem DUT (
@@ -60,6 +64,10 @@
   initial begin
     clk      = 1'b0;
     areset_b = 1'b0;
+    # 30
+    trans_rand_gen = new();
+    trans_rand_gen.toggle_signals();
+    $display("trans_write: %0d, trans_read: %0d", trans_rand_gen.trans_write, trans_rand_gen.trans_read);
   end
 
   initial begin
@@ -97,6 +105,7 @@
     uvm_config_db #(virtual fifo_mem_intf)::set(null, "*", "vintf", vif);
     run_test();
     //uvm_root #(.run_test("fifo_gpt_test")) run_test();
+    # `ENDTIME $finish;
   end
   endmodule
 

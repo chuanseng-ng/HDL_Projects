@@ -11,6 +11,9 @@
     import fifo_mem_env_pkg::*;
     `include "uvm_macros.svh"
 
+    // Import class
+    `include "fifo_mem_uvm_class.sv"
+
     // Import UVC
     `include "fifo_mem_base_test.sv"
     `include "fifo_mem_sanity_test.sv"

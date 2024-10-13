@@ -32,19 +32,21 @@
   task fifo_mem_driver::drive_task(fifo_mem_seq_item seq_item);
     `uvm_info(get_full_name(), "[FIFO_MEM] Received Sequence Item in Driver", UVM_LOW)
     @(posedge vintf.clk);
-    if (~seq_item.areset_b) begin
-      seq_item.reset_cycle_count();
-    end else begin
-      seq_item.update_wr_cycle_count();
-      seq_item.update_rd_cycle_count();
-    end
+    //if (~seq_item.areset_b) begin
+    //  `uvm_info(get_full_name(), "Resetting cycle count", UVM_LOW);
+    //  seq_item.reset_cycle_count();
+    //end else begin
+    //  `uvm_info(get_full_name(), "Incrementing cycle count", UVM_LOW);
+    //  seq_item.update_wr_cycle_count();
+    //  seq_item.update_rd_cycle_count();
+    //end
     //if (~seq_item.randomize()) begin
     //  `uvm_error(get_full_name(), "[SEQ] Failed to randomize seq_item logics")
     //end
     // Inputs
     //vintf.areset_b      <= seq_item.areset_b;
-    vintf.trans_read    <= seq_item.trans_read;
-    vintf.trans_write   <= seq_item.trans_write;
+    //vintf.trans_read    <= seq_item.trans_read;
+    //vintf.trans_write   <= seq_item.trans_write;
     vintf.data_in       <= seq_item.data_in;
     // Outputs
     vintf.data_out      <= seq_item.data_out;
@@ -61,8 +63,8 @@
     `uvm_info(get_full_name(), "[FIFO_MEM] Resetting DUT from Driver", UVM_NONE)
     //vintf.clk_in        <= 'b0;
     //vintf.areset_b      <= 'b1;
-    vintf.trans_read    <= 'b0;
-    vintf.trans_write   <= 'b0;
+    //vintf.trans_read    <= 'b0;
+    //vintf.trans_write   <= 'b0;
     vintf.data_in       <= 'd0;
     vintf.data_out      <= 'd0;
     vintf.full_ind      <= 'b0;
