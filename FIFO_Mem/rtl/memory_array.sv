@@ -11,16 +11,16 @@ module memory_array #(
     input fifo_wenable, //! FIFO write enable
 
     input [DATA_WIDTH-1:0] data_in,   //! Transaction data input (Write)
-    input [OSTD_NUM-1:0]   read_ptr,  //! Read pointer
-    input [OSTD_NUM-1:0]   write_ptr, //! Write pointer
+    input [PTR_SIZE-1:0]   read_ptr,  //! Read pointer
+    input [PTR_SIZE-1:0]   write_ptr, //! Write pointer
 
     output [DATA_WIDTH-1:0] data_out //! Transaction data output (Read)
 );
-    reg [DATA_WIDTH-1:0] [OSTD_NUM-1:0] data_reg; //! Memory array
+    reg [OSTD_NUM-1:0] [DATA_WIDTH-1:0] data_reg; //! Memory array
 
     always @(posedge clk_in or negedge areset_b) begin: mem_array_storage
         if (~areset_b) begin
-            for (int i = 0; i < OSTD_NUM-1; i++) begin
+            for (int i = 0; i < OSTD_NUM; i++) begin
                 data_reg[i] <= {(DATA_WIDTH){1'b0}};
             end
         end else begin

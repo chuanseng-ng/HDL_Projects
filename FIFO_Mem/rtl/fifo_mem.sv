@@ -52,8 +52,8 @@ module fifo_mem #(
 );
     parameter int PTR_SIZE = (OSTD_NUM > 1) ? $clog2(OSTD_NUM) : 1; //! Set pointer size to be 2^N = OSTD_NUM - Unused parameter
 
-    reg [OSTD_NUM-1:0] read_ptr;  //! Read pointer
-    reg [OSTD_NUM-1:0] write_ptr; //! Write pointer
+    reg [PTR_SIZE-1:0] read_ptr;  //! Read pointer
+    reg [PTR_SIZE-1:0] write_ptr; //! Write pointer
 
     wire fifo_renable; //! FIFO write enable
     wire fifo_wenable; //! FIFO read enable

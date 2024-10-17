@@ -12,8 +12,8 @@ module monitor_signal #(
     input fifo_renable, //! FIFO read enable
     input fifo_wenable, //! FIFO write enable
 
-    input [OSTD_NUM-1:0] read_ptr,  //! Read pointer
-    input [OSTD_NUM-1:0] write_ptr, //! Write pointer
+    input [PTR_SIZE-1:0] read_ptr,  //! Read pointer
+    input [PTR_SIZE-1:0] write_ptr, //! Write pointer
 
     output reg full_ind,      //! FIFO full indicator
     output reg empty_ind,     //! FIFO empty indicator
@@ -26,11 +26,11 @@ module monitor_signal #(
     wire underflow_set;   //! Underflow detector
     wire ptr_equal;       //! Read & Write pointer values equal indicator
 
-    wire [OSTD_NUM-1:0] ptr_result; // Read & Write pointer values difference result
+    wire [PTR_SIZE-1:0] ptr_result; // Read & Write pointer values difference result
 
-    assign ptr_msb_compare = write_ptr[OSTD_NUM-1] ^ read_ptr[OSTD_NUM-1];
-    assign ptr_equal       = (write_ptr[OSTD_NUM-2:0] - read_ptr[OSTD_NUM-2:0]) ? 0 : 1;
-    assign ptr_result      = write_ptr[OSTD_NUM-2:0] - read_ptr[OSTD_NUM-2:0];
+    assign ptr_msb_compare = write_ptr[PTR_SIZE-1] ^ read_ptr[PTR_SIZE-1];
+    assign ptr_equal       = (write_ptr[PTR_SIZE-2:0] - read_ptr[PTR_SIZE-2:0]) ? 0 : 1;
+    assign ptr_result      = write_ptr[PTR_SIZE-2:0] - read_ptr[PTR_SIZE-2:0];
     assign overflow_set    = full_ind && trans_write;
     assign underflow_set   = empty_ind && trans_read;
 
@@ -38,7 +38,7 @@ module monitor_signal #(
     always_comb begin: indicator_update
         full_ind      = ptr_msb_compare && ptr_equal;
         empty_ind     = (~ptr_msb_compare) && ptr_equal;
-        threshold_ind = (ptr_result[OSTD_NUM-1] || ptr_result[OSTD_NUM-2]) ? 1 : 0;
+        threshold_ind = (ptr_result[PTR_SIZE-1] || ptr_result[PTR_SIZE-2]) ? 1 : 0;
     end
 
     //! Update underflow_ind if FIFO is empty and nothing is being written in
