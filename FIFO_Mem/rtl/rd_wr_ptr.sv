@@ -10,13 +10,13 @@ module rd_wr_ptr #(
 
     output fifo_enable,
 
-    output reg [OSTD_NUM-1:0] rd_wr_ptr
+    output reg [PTR_SIZE-1:0] rd_wr_ptr
 );
     assign fifo_enable = (~full_empty_ind) && trans_enable;
 
     always @(posedge clk_in or negedge areset_b) begin
         if (~areset_b) begin
-            rd_wr_ptr <= {(OSTD_NUM){1'b0}};
+            rd_wr_ptr <= {(PTR_SIZE){1'b0}};
         end else begin
             if (fifo_enable) begin
                 rd_wr_ptr <= rd_wr_ptr + 1;
