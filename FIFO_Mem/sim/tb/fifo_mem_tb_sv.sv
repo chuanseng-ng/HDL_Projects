@@ -47,6 +47,11 @@ module fifo_mem_tb_sv #()();
     );
 
     initial begin
+        $display("FIFO Memory TB");
+
+        $dumpfile("fifo_mem.vcd");
+        $dumpvars();
+
         clk         = 1'b0;
         rst_n       = 1'b0;
         trans_write = 1'b0;
@@ -55,7 +60,7 @@ module fifo_mem_tb_sv #()();
     end
 
     initial begin
-        $dumpfile("fifo_mem_sv.vcd");
+        $dumpfile("SystolicArray2x2.vcd");
         $dumpvars();
         main;
     end
@@ -108,15 +113,15 @@ module fifo_mem_tb_sv #()();
 
     task static debug_fifo;
         begin
-            $display("----------------------------------------------");
-            $display("------------------   -----------------------");
-            $display("----------- SIMULATION RESULT ----------------");
-            $display("--------------       -------------------");
-            $display("----------------     ---------------------");
-            $display("----------------------------------------------");
-            $monitor("TIME = %d, wr = %b, rd = %b, data_in = %h", $time, trans_write, trans_read, data_in);
-        end
-    endtask
+            $display("----------------------------------------------");  
+            $display("------------------   -----------------------");  
+            $display("----------- SIMULATION RESULT ----------------");  
+            $display("--------------       -------------------");  
+            $display("----------------     ---------------------");  
+            $display("----------------------------------------------");  
+            $monitor("TIME = %d, wr = %b, rd = %b, data_in = %h", $time, trans_write, trans_read, data_in);  
+        end  
+    endtask 
 
     reg [ADDR_WIDTH-1:0] waddr, raddr;
     reg [ADDR_WIDTH-1:0] tb_mem [MEM_SIZE-1:0];

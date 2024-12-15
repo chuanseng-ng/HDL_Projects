@@ -4,37 +4,45 @@
 - Changelist is listed below
 
 ## Spec:
-- FIFO memory accepts DATA_WIDTH parameter (Data width can be configured - Default is 32 bits)
-- Size of FIFO memory can be configured with OSTD_NUM (Outstanding number can be configured - Default is 4)
-    - Width of read/write pointer is taken to be log2(OSTD_NUM) unless OSTD_NUM == 0 then pointer width = 1
-- Monitoring signals include the following:
-    - Full      - High when FIFO is full
-    - Empty     - High when FIFO is empty
-    - Overflow  - High when FIFO is full & transaction is still writing to FIFO (Might be redundant)
-    - Underflow - High when FIFO is empty & transaction is reading from FIFO (Might be redundant)
-    - Threshold - High when number of data in FIFO is lesser than threshold value (Might be redundant)
+<ul>
+   <li> FIFO memory accepts DATA_WIDTH parameter (Data width can be configured - Default is 32 bits)</li>
+   <li> Size of FIFO memory can be configured with OSTD_NUM (Outstanding number can be configured - Default is 4)</li>
+      <ul>
+         <li>Width of read/write pointer is taken to be log2(OSTD_NUM) unless OSTD_NUM == 0 then pointer width = 1</li>
+      </ul>
+
+   <br>
+   <li> Monitoring signals include the following:</li>
+      <ul>
+         <li>Full      - High when FIFO is full</li>
+         <li>Empty     - High when FIFO is empty</li>
+         <li>Overflow  - High when FIFO is full & transaction is still writing to FIFO (Might be redundant)</li>
+         <li>Underflow - High when FIFO is empty & transaction is reading from FIFO (Might be redundant)</li>
+         <li>Threshold - High when number of data in FIFO is lesser than threshold value (Might be redundant)</li>
+      </ul>
+   
+   <br>
+   <li> Operation:</li>
+      <ul>
+         <li>Write operation will take 1 clock cycle to be stored in FIFO memory array</li>
+         <li>Read operation from FIFO memory array is instantly done (Will take 0 clock cycles)</li>
+         <li>Read/Write pointer size == max value of outstanding transaction</li>
+      </ul>
+</ul>
 
 ## Status:
-- 20240908 - Add input vs output comparison check
-- 20240908 - Fix UVM TB to match design spec & expectation
-- 20240904 - Add UVM TB
 - 20240807 - Debug TB not incrementing beyond addr = 4 (Fixed FIFO size & read/write pointer unable to increment)
 - 20240807 - V1 release
 - 20240807 - Init DB
 
 ## Changelist:
-- 20240908 - Add input vs output comparison check
-- 20240908 - Modify UVM TB to match design expectation
-- 20240908 - Modify 2D memory_array to dump register values in waveform
-- 20240904 - Add UVM TB env files
 - 20240810 - Style-checker & Linter fix
 - 20240807 - Bug fix for FIFO size
 - 20240807 - Compile fix
 - 20240807 - V1 release
 
 ## To-Do:
-- Modify UVM TB to limit write/read to OSTD_NUM defined in run/DUT
-- Evaluate pass/fail based on number of read & write
+<br>
 
 ## Reference:
 - https://www.fpga4student.com/2017/01/verilog-code-for-fifo-memory.html
