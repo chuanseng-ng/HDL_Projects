@@ -21,23 +21,25 @@ module monitor_signal #(
     output reg underflow_ind, //! FIFO underflow indicator
     output reg threshold_ind  //! FIFO threshold value indicator
 );
-    wire ptr_msb_compare; //! Read & Write pointer MSB value comparison
+    wire ptr_msb_compare_n; //! Read & Write pointer MSB value comparison
     wire overflow_set;    //! Overflow detector
     wire underflow_set;   //! Underflow detector
     wire ptr_equal;       //! Read & Write pointer values equal indicator
 
     wire [PTR_SIZE-1:0] ptr_result; // Read & Write pointer values difference result
 
-    assign ptr_msb_compare = write_ptr[PTR_SIZE-1] ^ read_ptr[PTR_SIZE-1];
-    assign ptr_equal       = (write_ptr[PTR_SIZE-2:0] - read_ptr[PTR_SIZE-2:0]) ? 0 : 1;
-    assign ptr_result      = write_ptr[PTR_SIZE-2:0] - read_ptr[PTR_SIZE-2:0];
-    assign overflow_set    = full_ind && trans_write;
-    assign underflow_set   = empty_ind && trans_read;
+    //assign ptr_msb_compare_n = write_ptr[PTR_SIZE-1] ^ read_ptr[PTR_SIZE-1];
+    //assign ptr_equal         = (write_ptr[PTR_SIZE-2:0] - read_ptr[PTR_SIZE-2:0]) ? 0 : 1;
+    assign ptr_result        = write_ptr[PTR_SIZE-2:0] - read_ptr[PTR_SIZE-2:0];
+    assign overflow_set      = full_ind && trans_write;
+    assign underflow_set     = empty_ind && trans_read;
 
     //! Update indicators based on the set conditions
     always_comb begin: indicator_update
-        full_ind      = ptr_msb_compare && ptr_equal;
-        empty_ind     = (~ptr_msb_compare) && ptr_equal;
+        full_ind      = (write_ptr == OSTD_NUM) ? 1 : 0;
+        empty_ind     = (write_ptr == 0) ? 1 : 0;
+        //full_ind      = ptr_msb_compare_n && ptr_equal;
+        //empty_ind     = (~ptr_msb_compare_n) && ptr_equal;
         threshold_ind = (ptr_result[PTR_SIZE-1] || ptr_result[PTR_SIZE-2]) ? 1 : 0;
     end
 

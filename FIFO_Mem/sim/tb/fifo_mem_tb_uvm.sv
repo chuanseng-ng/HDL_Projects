@@ -12,7 +12,7 @@
   import fifo_mem_test_pkg::*;
   import uvm_pkg::*;
 
-    parameter int ENDTIME    = 2000;
+    parameter int ENDTIME    = 20000;
     parameter int DATA_WIDTH = 16;
     parameter int OSTD_NUM   = 16;
     //parameter int MAX_INT    = OSTD_NUM;
