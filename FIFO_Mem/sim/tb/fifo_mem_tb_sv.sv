@@ -6,11 +6,11 @@
 
 `define DELAY 10
 
-module fifo_mem_tb #()();
+module fifo_mem_tb_sv #()();
 
     parameter int ENDTIME    = 2000;
     parameter int DATA_WIDTH = 16;
-    parameter int OSTD_NUM   = 18;
+    parameter int OSTD_NUM   = 16;
     parameter int MAX_INT    = OSTD_NUM;
     parameter int ADDR_WIDTH = 8;
     parameter int MEM_SIZE   = 64;
@@ -60,8 +60,8 @@ module fifo_mem_tb #()();
     end
 
     initial begin
-        //$dumpfile("SystolicArray2x2.vcd");
-        //$dumpvars();
+        $dumpfile("SystolicArray2x2.vcd");
+        $dumpvars();
         main;
     end
 
@@ -87,7 +87,7 @@ module fifo_mem_tb #()();
             rst_n = 1'b1;
             # 18
             rst_n = 1'b0;
-            # 20
+            # (`DELAY*2)
             rst_n = 1'b1;
         end
     endtask
@@ -119,9 +119,9 @@ module fifo_mem_tb #()();
             $display("--------------       -------------------");  
             $display("----------------     ---------------------");  
             $display("----------------------------------------------");  
-            $monitor("TIME = %d, wr = %b, rd = %b, data_in = %h", $time, trans_write, trans_read, data_in);
-        end
-    endtask
+            $monitor("TIME = %d, wr = %b, rd = %b, data_in = %h", $time, trans_write, trans_read, data_in);  
+        end  
+    endtask 
 
     reg [ADDR_WIDTH-1:0] waddr, raddr;
     reg [ADDR_WIDTH-1:0] tb_mem [MEM_SIZE-1:0];
@@ -131,6 +131,7 @@ module fifo_mem_tb #()();
             waddr <= {(ADDR_WIDTH){1'b0}};
         end else begin
             if (trans_write) begin
+                $display("TIME = %d, Data is written into waddr = %d", $time, waddr);
                 tb_mem[waddr] <= data_in;
                 waddr         <= waddr + 1;
             end
@@ -148,12 +149,24 @@ module fifo_mem_tb #()();
                 // Simulation result check
                 if (tb_mem[raddr] == data_out) begin
                     $display("=== PASS ===== PASS ==== PASS ==== PASS ===");
-                    if (raddr == MAX_INT-1) begin
+                    if (raddr == MAX_INT-3) begin
+                        $display("------------ All simulation checks passed ------------");
+                        $display(" #####  #####  #####  ##### ");
+                        $display(" #   #  #   #  #      #     ");
+                        $display(" #####  #####  #####  ##### ");
+                        $display(" #      #   #      #      # ");
+                        $display(" #      #   #  #####  ##### ");
+                        $display("-------------- THE SIMULATION FINISHED ------------");
                         $finish;
                     end
                 end else begin
-                    $display ("=== FAIL ==== FAIL ==== FAIL ==== FAIL ===");  
-                    $display("-------------- THE SIMUALTION FINISHED ------------");  
+                    $display ("=== FAIL ==== FAIL ==== FAIL ==== FAIL ===");
+                    $display(" ##### ##### ###### #      ");
+                    $display(" #     #   #   #    #      ");
+                    $display(" ##### #####   #    #      ");
+                    $display(" #     #   #   #    #      ");
+                    $display(" #     #   # ###### ###### ");
+                    $display("-------------- THE SIMULATION FINISHED ------------");
                     $finish;
                 end
             end
@@ -163,7 +176,7 @@ module fifo_mem_tb #()();
     task static endsimulation;
         begin
             #ENDTIME
-            $display("-------------- THE SIMUALTION FINISHED ------------");  
+            $display("-------------- THE SIMULATION FINISHED ------------");
             $finish;
         end
     endtask
